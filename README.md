@@ -1,16 +1,16 @@
 # Bea's Delicacies - Bakery Website
 
-A beautiful, responsive bakery website featuring warm, inviting aesthetics inspired by professional bakery design templates.
+A beautiful, responsive bakery website featuring a sophisticated tan/beige color palette and elegant typography with a cursive script logo.
 
 ## Design Overview
 
-This website has been crafted with a warm, elegant bakery theme that combines modern web design principles with the comforting aesthetics of artisanal baking.
+This website has been crafted with a sophisticated, elegant theme that combines modern web design principles with the refined aesthetics of an artisanal delicacy shop. The soft tan/beige color palette creates a warm, inviting atmosphere while the elegant cursive logo adds a touch of luxury and handcrafted quality.
 
 ### Design Philosophy
 
-The design embodies the warmth and artisanal quality of a premium bakery through:
-- **Warm, inviting color palette** reminiscent of freshly baked goods
-- **Elegant serif typography** for headings (Playfair Display) paired with clean sans-serif for body text (Montserrat)
+The design embodies the elegance and artisanal quality of a premium delicacy shop through:
+- **Sophisticated tan/beige color palette** inspired by natural, premium ingredients and artisanal craftsmanship
+- **Elegant script logo** (Great Vibes) paired with classic serif headings (Playfair Display) and clean sans-serif body text (Montserrat)
 - **Smooth animations and transitions** that feel premium without being distracting
 - **Card-based layouts** with subtle shadows and hover effects
 - **Fully responsive design** that works beautifully on all devices
@@ -19,18 +19,18 @@ The design embodies the warmth and artisanal quality of a premium bakery through
 
 ## Color Palette
 
-The carefully selected color scheme evokes warmth, comfort, and quality:
+The carefully selected color scheme evokes elegance, warmth, and sophistication with a soft tan/beige theme:
 
 | Color Variable | Hex Code | Usage | Description |
 |---------------|----------|-------|-------------|
-| `--primary-color` | `#8B4513` | Headings, logo, accents | Rich saddle brown |
-| `--secondary-color` | `#D4A574` | Gradients, highlights | Warm tan/caramel |
-| `--accent-color` | `#E8B4A0` | Buttons, decorative elements | Soft peach/rose gold |
-| `--dark-accent` | `#6B3410` | Footer, dark contrasts | Deep chocolate brown |
-| `--bg-color` | `#FFF8F0` | Page background | Warm cream |
-| `--text-color` | `#3E2723` | Body text | Dark brown |
-| `--light-bg` | `#FEFAF5` | Section backgrounds | Off-white |
-| `--border-color` | `#E8D5C4` | Borders, dividers | Soft tan |
+| `--primary-color` | `#C9A886` | Headings, logo, accents | Soft tan/beige |
+| `--secondary-color` | `#D4B896` | Gradients, highlights | Light tan |
+| `--accent-color` | `#B89968` | Buttons, hover states | Golden tan |
+| `--dark-accent` | `#8B7355` | Footer, dark contrasts | Warm brown |
+| `--bg-color` | `#FAF7F2` | Page background | Soft cream |
+| `--text-color` | `#4A4A4A` | Body text | Warm gray |
+| `--light-bg` | `#F5F1EA` | Section backgrounds | Creamy beige |
+| `--border-color` | `#E5DDD0` | Borders, dividers | Pale tan |
 
 ### Color Usage Examples
 
@@ -49,9 +49,14 @@ color: var(--text-color);    /* For body text */
 
 ### Font Families
 
+**Great Vibes** - Elegant cursive script for logo
+- Weight: 400 (regular)
+- Used for: Site logo "Beas Delicacies"
+- Conveys: Elegance, handcrafted quality, luxury
+
 **Playfair Display** - Elegant serif font for headings
 - Weights: 400 (regular), 600 (semi-bold), 700 (bold)
-- Used for: h1, h2, h3, h4, h5, h6, logo, price displays
+- Used for: h1, h2, h3, h4, h5, h6, price displays
 - Conveys: Elegance, tradition, sophistication
 
 **Montserrat** - Modern sans-serif for body text
@@ -71,6 +76,7 @@ body: 16px           /* Base font size */
 ### Implementation
 
 ```css
+font-family: 'Great Vibes', cursive;  /* Logo */
 font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;  /* Headings */
 font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;  /* Body */
 ```
@@ -83,11 +89,12 @@ font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;  /* Bo
 
 #### 1. Top Bar
 - **Purpose**: Promotional announcements
-- **Styling**: Gradient background with contrasting text
-- **Features**: Sticky positioning, shadow for depth
+- **Styling**: Gradient background with tan tones
+- **Features**: Clean design with warm color scheme
 
 ```css
 background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+color: var(--dark-accent);
 padding: 12px 0;
 ```
 
@@ -96,7 +103,7 @@ padding: 12px 0;
 - **Features**:
   - Sticky header that stays visible on scroll
   - Animated underline on hover/active states
-  - Large, elegant logo with Playfair Display
+  - Large, elegant cursive logo with Great Vibes font
 - **Responsive**: Stacks vertically on mobile devices
 
 ```css
@@ -108,15 +115,16 @@ z-index: 1000;
 #### 3. Hero Section (Homepage)
 - **Layout**: Two-column flex layout (text + images)
 - **Features**:
-  - Gradient background with subtle pattern overlay
+  - Soft beige background for a clean, elegant look
   - Large, impactful heading
   - Two side-by-side images with hover effects
-  - Call-to-action button
+  - Call-to-action button with tan theme
 - **Responsive**: Stacks vertically on tablets and mobile
 
 ```css
 .hero {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-accent) 100%);
+  background-color: var(--light-bg);  /* Soft beige background */
+  color: var(--text-color);
   display: flex;
   gap: 50px;
 }
@@ -154,14 +162,13 @@ z-index: 1000;
 
 ```css
 .form-group input:focus {
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.15);
+  border-color: var(--primary-color);  /* Tan border on focus */
 }
 ```
 
 #### 7. Footer
-- **Styling**: Gradient background matching hero
-- **Features**: Elevated shadow, centered text
+- **Styling**: Solid warm brown background
+- **Features**: Simple, centered text with warm color scheme
 
 ---
 
@@ -169,26 +176,26 @@ z-index: 1000;
 
 ### Buttons
 
-The site uses a sophisticated button design with gradients and animations:
+The site uses elegant button design with smooth color transitions:
 
 ```css
 .btn {
-  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+  background-color: var(--primary-color);  /* Soft tan */
+  color: white;
   border-radius: 30px;
   padding: 15px 35px;
   transition: all 0.3s ease;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  background-color: var(--accent-color);  /* Golden tan on hover */
 }
 ```
 
 **States:**
-- Default: Gradient from tan to peach
-- Hover: Reversed gradient, lifted effect with larger shadow
-- Active: Dark text on light background
+- Default: Soft tan background with white text
+- Hover: Golden tan background
+- Active: Maintains tan theme throughout
 
 ### Navigation Links
 
@@ -210,11 +217,11 @@ Elegant underline animation on hover:
 
 ### Card Hover Effects
 
-Product cards and other cards feature multi-layered hover states:
-1. Animated top border reveal
-2. Upward translation (-8px)
-3. Enhanced shadow
-4. Image zoom (scale 1.05)
+Product cards and other cards feature subtle, elegant hover states:
+1. Upward translation (-8px)
+2. Enhanced shadow
+3. Image zoom (scale 1.05)
+4. Border color transitions to tan
 
 ---
 
@@ -369,9 +376,9 @@ To modify the color scheme, edit the CSS variables in `style.css`:
 
 ```css
 :root {
-  --primary-color: #8B4513;     /* Your primary brand color */
-  --secondary-color: #D4A574;   /* Secondary/highlight color */
-  --accent-color: #E8B4A0;      /* Accent details */
+  --primary-color: #C9A886;     /* Soft tan/beige - primary brand color */
+  --secondary-color: #D4B896;   /* Light tan - secondary/highlight color */
+  --accent-color: #B89968;      /* Golden tan - accent details */
   /* ... etc */
 }
 ```
@@ -382,17 +389,21 @@ To use different fonts:
 
 1. Update the Google Fonts import URL in `style.css`:
 ```css
-@import url('https://fonts.googleapis.com/css2?family=YourFont:wght@...&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 ```
 
 2. Update the font-family declarations:
 ```css
+.logo {
+  font-family: 'Great Vibes', cursive;  /* Logo script font */
+}
+
 h1, h2, h3 {
-  font-family: 'YourHeadingFont', serif;
+  font-family: 'Playfair Display', serif;  /* Headings */
 }
 
 body {
-  font-family: 'YourBodyFont', sans-serif;
+  font-family: 'Montserrat', sans-serif;  /* Body text */
 }
 ```
 
@@ -492,6 +503,7 @@ This is a static site and can be deployed to:
 **Design Inspiration:** Professional bakery website templates with warm, artisanal aesthetics
 
 **Fonts:**
+- Great Vibes by TypeSETit
 - Playfair Display by Claus Eggers Sørensen
 - Montserrat by Julieta Ulanovsky
 
