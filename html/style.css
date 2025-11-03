@@ -2,14 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root {
-  --primary-color: #8B4513; /* Rich saddle brown */
-  --secondary-color: #D4A574; /* Warm tan/caramel */
-  --accent-color: #E8B4A0; /* Soft peach/rose gold */
-  --dark-accent: #6B3410; /* Deep chocolate brown */
-  --bg-color: #FFF8F0; /* Warm cream background */
-  --text-color: #3E2723; /* Dark brown text */
-  --light-bg: #FEFAF5; /* Off-white */
-  --border-color: #E8D5C4; /* Soft tan border */
+  --primary-color: #C9A886; /* Soft tan/beige */
+  --secondary-color: #D4B896; /* Light tan */
+  --accent-color: #B89968; /* Golden tan */
+  --dark-accent: #8B7355; /* Warm brown */
+  --bg-color: #FAF7F2; /* Soft cream background */
+  --text-color: #4A4A4A; /* Warm gray text */
+  --light-bg: #F5F1EA; /* Creamy beige */
+  --border-color: #E5DDD0; /* Pale tan border */
 }
 
 * {
