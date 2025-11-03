@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('public')); // Serve your HTML/CSS/JS files
+app.use(express.static('.')); // Serve your HTML/CSS/JS files from current directory
 
 // ============================================
 // PAYMENT ENDPOINTS
