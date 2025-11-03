@@ -579,7 +579,7 @@ h3 {
   display: flex;
   gap: 15px;
   margin-top: 15px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .social-link {
