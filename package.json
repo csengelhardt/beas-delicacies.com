@@ -1,0 +1,19 @@
+{
+  "name": "beas-delicacies",
+  "version": "1.0.0",
+  "description": "Beas Delicacies - Handcrafted Baked Goods E-commerce Site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bakery",
+    "ecommerce",
+    "stripe"
+  ],
+  "author": "Beas Delicacies",
+  "license": "ISC",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}

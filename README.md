@@ -460,27 +460,48 @@ This is a static site and can be deployed to:
 
 ---
 
+## E-commerce Features
+
+### ✅ Stripe Checkout Integration (IMPLEMENTED)
+
+The site now includes a fully functional e-commerce system with Stripe Checkout:
+
+- **Shopping Cart** - Full cart functionality with localStorage persistence
+- **Secure Payments** - Stripe Checkout for PCI-compliant payment processing
+- **Guest Checkout** - No account required to make purchases
+- **Order Tracking** - Session-based order confirmation
+- **Serverless Backend** - Netlify Functions for secure payment processing
+
+**Setup Required:**
+See [STRIPE_SETUP.md](STRIPE_SETUP.md) for complete installation and configuration instructions.
+
+**Features:**
+- Accept all major credit cards
+- Apple Pay & Google Pay support
+- Automatic email receipts
+- Tax calculation (10%)
+- Free shipping over $50
+- Mobile-responsive checkout
+
 ## Future Enhancements
 
 ### Recommended Additions
 
-1. **Shopping Cart Functionality**
-   - Add JavaScript for cart management
-   - Implement local storage for cart persistence
-
-2. **Image Optimization**
+1. **Image Optimization**
    - Replace placeholder images with optimized bakery photos
    - Implement lazy loading for images
    - Use modern image formats (WebP with fallbacks)
 
-3. **Animation Enhancements**
+2. **Animation Enhancements**
    - Add scroll-triggered animations (using Intersection Observer)
    - Implement parallax effects for hero images
 
-4. **E-commerce Integration**
-   - Connect to payment gateway (Stripe, Square)
-   - Add product detail pages
-   - Implement order management
+3. **Advanced E-commerce Features**
+   - Product variations (sizes, flavors)
+   - Customer reviews and ratings
+   - Discount codes and promotions
+   - Subscription products
+   - Abandoned cart recovery
 
 5. **Content Management**
    - Integrate with headless CMS (Contentful, Sanity)

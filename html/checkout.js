@@ -1,39 +1,18 @@
-// Checkout JavaScript for Beas Delicacies
+// Checkout JavaScript for Beas Delicacies - Stripe Checkout Integration
 
-// Initialize Stripe (you'll need to replace with your actual publishable key)
-// Get your key from: https://dashboard.stripe.com/apikeys
-const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY_HERE'); // Replace with your actual key
-const elements = stripe.elements();
+// ==========================================
+// STRIPE CONFIGURATION
+// ==========================================
+// Replace with your actual Stripe publishable key from: https://dashboard.stripe.com/apikeys
+const STRIPE_PUBLISHABLE_KEY = 'pk_test_YOUR_PUBLISHABLE_KEY_HERE';
 
-// Create card element
-const cardElement = elements.create('card', {
-  style: {
-    base: {
-      fontSize: '16px',
-      color: '#4A4A4A',
-      fontFamily: '"Montserrat", sans-serif',
-      '::placeholder': {
-        color: '#aab7c4',
-      },
-    },
-    invalid: {
-      color: '#d9534f',
-    },
-  },
-});
+// Your serverless function endpoint (Netlify/Vercel) or backend API
+// After deployment, update this to your actual endpoint
+const CREATE_CHECKOUT_SESSION_URL = '/.netlify/functions/create-checkout-session';
+// For Vercel, use: '/api/create-checkout-session'
+// For custom backend: 'https://your-api.com/create-checkout-session'
 
-// Mount card element
-cardElement.mount('#card-element');
-
-// Handle card errors
-cardElement.on('change', (event) => {
-  const displayError = document.getElementById('card-errors');
-  if (event.error) {
-    displayError.textContent = event.error.message;
-  } else {
-    displayError.textContent = '';
-  }
-});
+const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
 
 // Get cart from localStorage
 function getCart() {
@@ -139,181 +118,107 @@ function setupPaymentMethods() {
 const checkoutForm = document.getElementById('checkout-form');
 checkoutForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  
-  // Login is now optional - users can checkout as guests
-  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-  
-  // Get selected payment method
-  const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
-  
+
   // Disable submit button to prevent double submission
   const submitButton = checkoutForm.querySelector('button[type="submit"]');
   submitButton.disabled = true;
-  submitButton.textContent = 'Processing...';
-  
+  submitButton.textContent = 'Redirecting to Stripe...';
+
   try {
-    if (selectedPayment === 'card') {
-      await processCardPayment();
-    } else if (selectedPayment === 'paypal') {
-      await processPayPalPayment();
-    } else if (selectedPayment === 'apple') {
-      await processApplePayPayment();
-    }
+    await redirectToStripeCheckout();
   } catch (error) {
-    console.error('Payment error:', error);
-    alert('Payment failed. Please try again.');
+    console.error('Checkout error:', error);
+    alert('Failed to start checkout. Please try again.\n\nError: ' + error.message);
     submitButton.disabled = false;
     submitButton.textContent = 'Place Order';
   }
 });
 
-// Process card payment with Stripe
-async function processCardPayment() {
-  // In a real application, you would:
-  // 1. Create a payment intent on your server
-  // 2. Confirm the payment with Stripe
-  // 3. Handle the response
-  
-  // Example implementation:
-  /*
-  // Get billing details
-  const billingDetails = {
-    name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
+// ==========================================
+// STRIPE CHECKOUT REDIRECT
+// ==========================================
+async function redirectToStripeCheckout() {
+  const cart = getCart();
+
+  if (cart.length === 0) {
+    throw new Error('Your cart is empty');
+  }
+
+  // Get customer information from form
+  const customerInfo = {
     email: document.getElementById('email').value,
+    name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
     phone: document.getElementById('phone').value,
     address: {
       line1: document.getElementById('address').value,
       city: document.getElementById('city').value,
       state: document.getElementById('state').value,
       postal_code: document.getElementById('zip').value,
-      country: 'US'
+      country: document.getElementById('country').value
     }
   };
-  
-  // Create payment method
-  const {error, paymentMethod} = await stripe.createPaymentMethod({
-    type: 'card',
-    card: cardElement,
-    billing_details: billingDetails
-  });
-  
-  if (error) {
+
+  // Prepare line items for Stripe
+  const lineItems = cart.map(item => ({
+    price_data: {
+      currency: 'usd',
+      product_data: {
+        name: item.name,
+        images: [getFullImageUrl(item.image)]
+      },
+      unit_amount: Math.round(item.price * 100) // Convert to cents
+    },
+    quantity: item.quantity
+  }));
+
+  // Calculate shipping
+  const totals = calculateTotals();
+  const shippingAmount = parseFloat(totals.shipping);
+
+  try {
+    // Call your serverless function to create checkout session
+    const response = await fetch(CREATE_CHECKOUT_SESSION_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        lineItems,
+        customerInfo,
+        shippingAmount: Math.round(shippingAmount * 100), // Convert to cents
+        successUrl: window.location.origin + '/html/success.html?session_id={CHECKOUT_SESSION_ID}',
+        cancelUrl: window.location.origin + '/html/checkout.html'
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || 'Failed to create checkout session');
+    }
+
+    const { sessionId } = await response.json();
+
+    // Redirect to Stripe Checkout
+    const { error } = await stripe.redirectToCheckout({ sessionId });
+
+    if (error) {
+      throw error;
+    }
+  } catch (error) {
+    console.error('Error creating checkout session:', error);
     throw error;
   }
-  
-  // Send payment method to your server
-  const response = await fetch('/api/create-payment-intent', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      paymentMethodId: paymentMethod.id,
-      amount: Math.round(parseFloat(calculateTotals().total) * 100), // Amount in cents
-      cart: getCart()
-    })
-  });
-  
-  const data = await response.json();
-  
-  if (data.error) {
-    throw new Error(data.error);
+}
+
+// Helper function to get full image URL
+function getFullImageUrl(imagePath) {
+  if (imagePath.startsWith('http')) {
+    return imagePath;
   }
-  
-  // Confirm payment
-  const {error: confirmError} = await stripe.confirmCardPayment(data.clientSecret);
-  
-  if (confirmError) {
-    throw confirmError;
-  }
-  */
-  
-  // For demonstration purposes, simulate a successful payment
-  await simulatePayment();
-  completeOrder();
-}
-
-// Process PayPal payment
-async function processPayPalPayment() {
-  // In a real application, you would integrate PayPal SDK
-  // https://developer.paypal.com/docs/checkout/
-  
-  await simulatePayment();
-  completeOrder();
-}
-
-// Process Apple Pay payment
-async function processApplePayPayment() {
-  // In a real application, you would integrate Apple Pay
-  // https://developer.apple.com/apple-pay/
-  
-  await simulatePayment();
-  completeOrder();
-}
-
-// Simulate payment processing
-function simulatePayment() {
-  return new Promise((resolve) => {
-    setTimeout(resolve, 2000); // Simulate 2 second processing time
-  });
-}
-
-// Complete order
-function completeOrder() {
-  // Get order details
-  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-  const user = JSON.parse(localStorage.getItem('user'));
-  
-  const orderDetails = {
-    orderId: 'ORD-' + Date.now(),
-    date: new Date().toISOString(),
-    items: getCart(),
-    totals: calculateTotals(),
-    shippingInfo: {
-      name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      address: document.getElementById('address').value,
-      city: document.getElementById('city').value,
-      state: document.getElementById('state').value,
-      zip: document.getElementById('zip').value,
-      country: document.getElementById('country').value
-    },
-    customerType: isLoggedIn ? 'registered' : 'guest',
-    userId: user ? user.id : null
-  };
-  
-  // In a real application, you would send this to your server
-  // fetch('/api/orders', {
-  //   method: 'POST',
-  //   headers: {'Content-Type': 'application/json'},
-  //   body: JSON.stringify(orderDetails)
-  // });
-  
-  // Save order to localStorage (for demonstration)
-  const orders = JSON.parse(localStorage.getItem('orders')) || [];
-  orders.push(orderDetails);
-  localStorage.setItem('orders', JSON.stringify(orders));
-  
-  // Clear cart
-  localStorage.removeItem('cart');
-  
-  // Show success message
-  let successMessage = `Thank you for your order!\n\nOrder ID: ${orderDetails.orderId}\n\nYou will receive a confirmation email at ${orderDetails.shippingInfo.email}`;
-  
-  // If guest checkout, offer to create account
-  if (!isLoggedIn) {
-    successMessage += '\n\nWould you like to create an account to track your orders?';
-    if (confirm(successMessage)) {
-      // Save order email for account creation
-      localStorage.setItem('pendingAccountEmail', orderDetails.shippingInfo.email);
-      window.location.href = 'login.html?action=signup';
-      return;
-    }
-  } else {
-    alert(successMessage);
-  }
-  
-  // Redirect to home page
-  window.location.href = 'index.html';
+  // Convert relative path to absolute URL
+  const baseUrl = window.location.origin;
+  const cleanPath = imagePath.replace(/^\.\.\//, '/html/');
+  return baseUrl + cleanPath;
 }
 
 // Initialize on page load
