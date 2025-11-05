@@ -66,6 +66,11 @@
 
   <header class="main-header">
     <a href="index.html" class="logo">Bea's Delicacies</a>
+    <button class="hamburger" aria-label="Toggle navigation menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
     <nav class="main-nav">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -77,6 +82,9 @@
       </ul>
     </nav>
   </header>
+
+  <!-- Navigation overlay for mobile -->
+  <div class="nav-overlay"></div>
 
   <main class="container">
     <h1 style="text-align: center; margin-bottom: 30px;">Shop Our Goodies</h1>
@@ -165,6 +173,7 @@
   <!-- Snipcart Required Elements -->
   <div id="snipcart" data-api-key="YTU1ZTc4NjYtODk0MS00ZTEzLTk4MTMtMjg3NDBiMDBhMjBhNjM4OTc5MDMxMjc4NDQyNzYz" data-config-modal-style="side" hidden></div>
 
+  <script src="menu.js"></script>
   <!-- Snipcart JavaScript -->
   <script src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
