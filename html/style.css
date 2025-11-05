@@ -550,6 +550,16 @@ h3 {
   left: 0;
 }
 
+.footer-quick-links h3 {
+  text-align: left;
+}
+
+.quick-links-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 .footer-contact-item {
   display: flex;
   align-items: flex-start;
