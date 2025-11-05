@@ -1,4 +1,4 @@
-// Authentication JavaScript for Beas Delicacies
+// Authentication JavaScript for Bea's Delicacies
 
 // Switch between login and signup tabs
 function switchTab(tab) {
@@ -110,7 +110,7 @@ function handleSignup(event) {
   // Clear pending account email if it exists
   localStorage.removeItem('pendingAccountEmail');
 
-  alert('Account created successfully! Welcome to Beas Delicacies!');
+  alert('Account created successfully! Welcome to Bea's Delicacies!');
   
   // Always redirect to home page after signup
   window.location.href = 'index.html';

@@ -1,4 +1,4 @@
-// Checkout JavaScript for Beas Delicacies
+// Checkout JavaScript for Bea's Delicacies
 
 // Initialize Stripe (you'll need to replace with your actual publishable key)
 // Get your key from: https://dashboard.stripe.com/apikeys

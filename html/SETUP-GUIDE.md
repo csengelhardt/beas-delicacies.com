@@ -1,4 +1,4 @@
-# Beas Delicacies - Complete Setup Guide
+# Bea's Delicacies - Complete Setup Guide
 
 ## 📋 What You're Building
 

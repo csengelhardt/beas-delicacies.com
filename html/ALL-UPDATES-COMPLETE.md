@@ -195,7 +195,7 @@ If you don't have them yet:
    - Link to your website
 
 2. **Facebook Page**
-   - Name: Beas Delicacies
+   - Name: Bea's Delicacies
    - Category: Bakery
    - Add website link
 
@@ -204,7 +204,7 @@ If you don't have them yet:
    - Post baking process videos
 
 4. **Pinterest** (Drives lots of traffic!)
-   - Name: Beas Delicacies
+   - Name: Bea's Delicacies
    - Create boards: Cakes, Cookies, Cupcakes, etc.
 
 ### Step 6: Set Up Newsletter Service (20 minutes)
@@ -424,7 +424,7 @@ For more details, see:
 ### Before:
 ```html
 <footer class="main-footer">
-  <p>&copy; 2025 Beas Delicacies. All rights reserved.</p>
+  <p>&copy; 2025 Bea's Delicacies. All rights reserved.</p>
 </footer>
 ```
 - 2 lines of HTML

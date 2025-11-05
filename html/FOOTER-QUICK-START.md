@@ -20,7 +20,7 @@ I've completely redesigned your footer from a basic copyright line into a **prof
 ### Before (Your Current Footer):
 ```html
 <footer class="main-footer">
-  <p>&copy; 2025 Beas Delicacies. All rights reserved.</p>
+  <p>&copy; 2025 Bea's Delicacies. All rights reserved.</p>
 </footer>
 ```
 - ❌ No functionality
@@ -120,7 +120,7 @@ In **EVERY** HTML file (index.html, shop.html, about.html, etc.):
 1. Find your current footer:
    ```html
    <footer class="main-footer">
-     <p>&copy; 2025 Beas Delicacies. All rights reserved.</p>
+     <p>&copy; 2025 Bea's Delicacies. All rights reserved.</p>
    </footer>
    ```
 

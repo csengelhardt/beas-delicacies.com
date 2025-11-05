@@ -1,4 +1,4 @@
-// server.js - Example Backend Server for Beas Delicacies
+// server.js - Example Backend Server for Bea's Delicacies
 // This is a Node.js/Express server that handles payment processing and order management
 
 // Install dependencies first:

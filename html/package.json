@@ -1,7 +1,7 @@
 {
   "name": "beas-delicacies-backend",
   "version": "1.0.0",
-  "description": "Backend server for Beas Delicacies e-commerce website",
+  "description": "Backend server for Bea's Delicacies e-commerce website",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -14,7 +14,7 @@
     "stripe",
     "payment"
   ],
-  "author": "Beas Delicacies",
+  "author": "Bea's Delicacies",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
