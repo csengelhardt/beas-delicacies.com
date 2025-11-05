@@ -158,6 +158,25 @@
       box-shadow: 0 0 0 3px rgba(201, 168, 134, 0.1) !important;
     }
 
+    /* Country Dropdown - Fix Width and Z-Index */
+    .snipcart-form__field select,
+    .snipcart__select,
+    select.snipcart-input,
+    .snipcart-form__select {
+      max-width: 100% !important;
+      width: 100% !important;
+      z-index: 10 !important;
+    }
+
+    /* Dropdown options container */
+    .snipcart-form__field .snipcart__select-menu,
+    .snipcart__select-menu,
+    [class*="snipcart"][class*="menu"] {
+      z-index: 9999 !important;
+      max-height: 300px !important;
+      overflow-y: auto !important;
+    }
+
     /* Cart Items */
     .snipcart-item-line,
     .snipcart-cart-summary-item {
@@ -185,11 +204,22 @@
       font-weight: 600 !important;
     }
 
+    /* Shipping Notice - Add Spacing */
+    .snipcart-cart-summary-fees__item,
+    .snipcart-cart-summary-fees,
+    .snipcart__box--badge-highlight p,
+    .snipcart-cart-summary-fees__notice,
+    .snipcart-cart-summary__fees {
+      margin-bottom: 30px !important;
+      padding-bottom: 20px !important;
+    }
+
     /* Total Price */
     .snipcart-cart-summary-item--total {
       background: linear-gradient(135deg, #C9A886 0%, #B89968 100%) !important;
       border-radius: 8px !important;
       padding: 15px !important;
+      margin-top: 30px !important;
     }
 
     .snipcart-cart-summary-item--total .snipcart__font--bold {
@@ -228,6 +258,62 @@
       background-color: #D4B896 !important;
       color: #FFFFFF !important;
       border-radius: 50% !important;
+    }
+
+    /* Fix Blue Highlights - Replace with Theme Colors */
+    /* Plus/Minus Quantity Buttons */
+    .snipcart-item-quantity__total-items button,
+    .snipcart__actions--link svg,
+    .snipcart-item-quantity__remove svg,
+    .snipcart-item-quantity__add svg {
+      color: #C9A886 !important;
+      fill: #C9A886 !important;
+    }
+
+    .snipcart__actions--link:hover svg {
+      color: #B89968 !important;
+      fill: #B89968 !important;
+    }
+
+    /* Navigation Icons (Back Arrow, Close, etc.) */
+    .snipcart__icon,
+    .snipcart-modal__close-icon,
+    .snipcart-cart-button__icon,
+    svg.snipcart__icon,
+    button svg,
+    .snipcart-modal__close svg {
+      color: #C9A886 !important;
+      fill: #C9A886 !important;
+    }
+
+    .snipcart__icon:hover,
+    .snipcart-modal__close-icon:hover,
+    .snipcart-cart-button__icon:hover {
+      color: #B89968 !important;
+      fill: #B89968 !important;
+    }
+
+    /* Bag/Cart Icon */
+    .snipcart-cart-button svg,
+    .snipcart-cart-header__icon svg,
+    [class*="snipcart"][class*="icon"] svg {
+      color: #C9A886 !important;
+      fill: #C9A886 !important;
+    }
+
+    /* Focus States - Replace Blue with Theme Color */
+    .snipcart-input:focus,
+    .snipcart-textbox:focus,
+    button:focus,
+    a:focus {
+      outline-color: #C9A886 !important;
+    }
+
+    /* Active/Selected States */
+    .snipcart__button--active,
+    .snipcart-item-quantity__remove:active,
+    .snipcart-item-quantity__add:active {
+      background-color: #B89968 !important;
     }
 
     /* Checkout Steps Navigation */
