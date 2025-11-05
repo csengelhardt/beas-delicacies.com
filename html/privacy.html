@@ -6,6 +6,11 @@
   <title>Privacy Policy - Bea's Delicacies</title>
   <link rel="icon" type="image/png" href="images/cropped-cake_3087281.png">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Snipcart Integration -->
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
   <style>
     .legal-content {
       max-width: 900px;
@@ -88,7 +93,7 @@
         <li><a href="shop.html">Shop</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        <li><a href="#" class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</a></li>
         <li><a href="login.html">Login</a></li>
       </ul>
     </nav>
@@ -273,8 +278,14 @@
     </div>
   </footer>
 
+  <!-- Snipcart Required Elements -->
+  <div id="snipcart" data-api-key="YTU1ZTc4NjYtODk0MS00ZTEzLTk4MTMtMjg3NDBiMDBhMjBhNjM4OTc5MDMxMjc4NDQyNzYz" data-config-modal-style="side" hidden></div>
+
+  <!-- Snipcart JavaScript -->
+  <script src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+  <!-- Mobile Menu JavaScript -->
   <script src="menu.js"></script>
-  <script src="cart.js"></script>
 
 </body>
 </html>
