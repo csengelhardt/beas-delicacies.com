@@ -270,30 +270,44 @@
       font-weight: 600 !important;
     }
 
+    /* Quantity +/- buttons - force perfect circles */
     .snipcart__actions--link.snipcart-item-quantity__remove,
-    .snipcart__actions--link.snipcart-item-quantity__add {
+    .snipcart__actions--link.snipcart-item-quantity__add,
+    .snipcart-item-quantity__remove,
+    .snipcart-item-quantity__add {
       background-color: #D4B896 !important;
       color: #FFFFFF !important;
       border-radius: 50% !important;
       width: 32px !important;
+      min-width: 32px !important;
+      max-width: 32px !important;
       height: 32px !important;
+      min-height: 32px !important;
+      max-height: 32px !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
       padding: 0 !important;
+      aspect-ratio: 1 / 1 !important;
     }
 
-    /* Remove/trash button - make circular */
+    /* Remove/trash button - force perfect circles */
     .snipcart-item-line__remove,
     .snipcart__actions--link[aria-label*="Remove"],
-    button.snipcart__actions--link {
+    button.snipcart__actions--link,
+    .snipcart-item-line__container button {
       border-radius: 50% !important;
       width: 32px !important;
+      min-width: 32px !important;
+      max-width: 32px !important;
       height: 32px !important;
+      min-height: 32px !important;
+      max-height: 32px !important;
       display: inline-flex !important;
       align-items: center !important;
       justify-content: center !important;
       padding: 0 !important;
+      aspect-ratio: 1 / 1 !important;
     }
 
     /* Fix Blue Highlights - Replace with Theme Colors */
