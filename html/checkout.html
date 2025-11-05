@@ -91,6 +91,7 @@
       font-family: 'Montserrat', sans-serif !important;
       font-weight: 600 !important;
       padding: 12px 30px !important;
+      min-height: 48px !important;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
       transition: all 0.3s ease !important;
       border: none !important;
@@ -133,6 +134,8 @@
       border-radius: 8px !important;
       color: #4A4A4A !important;
       font-family: 'Montserrat', sans-serif !important;
+      min-height: 48px !important;
+      padding: 12px 16px !important;
     }
     .snipcart-input:focus,
     .snipcart-textbox:focus,
@@ -320,193 +323,6 @@
       color: #4A4A4A !important;
     }
   </style>
-  <script src="https://js.stripe.com/v3/"></script>
-  <style>
-    .checkout-container {
-      max-width: 1200px;
-      margin: 40px auto;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 40px;
-    }
-    .checkout-section {
-      background: white;
-      border-radius: 15px;
-      padding: 35px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      border: 2px solid var(--border-color);
-    }
-    .checkout-section h2 {
-      margin-bottom: 25px;
-      padding-bottom: 15px;
-      border-bottom: 2px solid var(--border-color);
-    }
-    .section-number {
-      display: inline-block;
-      width: 35px;
-      height: 35px;
-      background: var(--secondary-color);
-      color: var(--dark-accent);
-      border-radius: 50%;
-      text-align: center;
-      line-height: 35px;
-      margin-right: 12px;
-      font-weight: 700;
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .checkout-section .payment-methods {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-    .payment-method {
-      border: 2px solid var(--border-color);
-      border-radius: 10px;
-      padding: 20px 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background: white;
-    }
-    .payment-method:hover {
-      border-color: var(--secondary-color);
-      background: var(--light-bg);
-    }
-    .payment-method.active {
-      border-color: var(--primary-color);
-      background: var(--light-bg);
-      border-width: 3px;
-    }
-    .payment-method input[type="radio"] {
-      display: none;
-    }
-    .payment-method .payment-icon {
-      font-size: 2em;
-      margin-bottom: 8px;
-      height: auto;
-      padding: 0;
-      background: transparent;
-      box-shadow: none;
-      border-radius: 0;
-      font-weight: normal;
-      color: inherit;
-    }
-    .payment-label {
-      font-weight: 600;
-      font-size: 0.9em;
-      color: var(--text-color);
-    }
-    #card-element {
-      padding: 14px 16px;
-      border: 2px solid var(--border-color);
-      border-radius: 8px;
-      background: var(--light-bg);
-      transition: all 0.3s ease;
-    }
-    #card-element.StripeElement--focus {
-      border-color: var(--secondary-color);
-      box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.15);
-      background: white;
-    }
-    #card-errors {
-      color: #d9534f;
-      margin-top: 10px;
-      font-size: 0.9em;
-    }
-    .order-summary-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 15px 0;
-      border-bottom: 1px solid var(--border-color);
-      align-items: center;
-    }
-    .order-summary-item:last-of-type {
-      border-bottom: 2px solid var(--border-color);
-      margin-bottom: 15px;
-    }
-    .item-details {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      flex: 1;
-    }
-    .item-image {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 2px solid var(--border-color);
-    }
-    .item-info {
-      flex: 1;
-    }
-    .item-name {
-      font-weight: 600;
-      color: var(--primary-color);
-      margin-bottom: 4px;
-    }
-    .item-quantity {
-      font-size: 0.9em;
-      color: var(--text-color);
-      opacity: 0.8;
-    }
-    .item-price {
-      font-weight: 700;
-      color: var(--primary-color);
-      font-family: 'Playfair Display', serif;
-    }
-    .summary-totals {
-      margin-top: 20px;
-    }
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      font-size: 1.05em;
-    }
-    .summary-row.total {
-      border-top: 3px solid var(--border-color);
-      margin-top: 15px;
-      padding-top: 20px;
-      font-size: 1.5em;
-      font-weight: 700;
-      color: var(--primary-color);
-      font-family: 'Playfair Display', serif;
-    }
-    .place-order-btn {
-      width: 100%;
-      margin-top: 25px;
-      padding: 18px;
-      font-size: 1.15em;
-    }
-    .secure-badge {
-      text-align: center;
-      margin-top: 20px;
-      color: var(--text-color);
-      font-size: 0.9em;
-      opacity: 0.8;
-    }
-    .secure-badge svg {
-      vertical-align: middle;
-      margin-right: 5px;
-    }
-    @media (max-width: 968px) {
-      .checkout-container {
-        grid-template-columns: 1fr;
-      }
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-      .payment-methods {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="top-bar">
@@ -534,140 +350,97 @@
   <div class="nav-overlay"></div>
   <main class="container">
     <h1 style="text-align: center; margin-bottom: 40px;">Checkout</h1>
-    
-    <div style="max-width: 800px; margin: 0 auto 30px; text-align: center; background: var(--light-bg); padding: 15px 20px; border-radius: 10px; border: 2px solid var(--border-color);">
-      <p style="margin: 0; color: var(--text-color);">
-        <strong>Guest Checkout:</strong> You can complete your purchase without creating an account. 
-        <a href="login.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Already have an account? Login here</a>
-      </p>
-    </div>
-    <form id="checkout-form" class="checkout-container">
-      <!-- Left Column: Checkout Forms -->
-      <div>
-        <!-- Shipping Information -->
-        <div class="checkout-section">
-          <h2><span class="section-number">1</span>Shipping Information</h2>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="first-name">First Name</label>
-              <input type="text" id="first-name" name="firstName" required>
-            </div>
-            <div class="form-group">
-              <label for="last-name">Last Name</label>
-              <input type="text" id="last-name" name="lastName" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required>
-          </div>
-          <div class="form-group">
-            <label for="address">Street Address</label>
-            <input type="text" id="address" name="address" required>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="city">City</label>
-              <input type="text" id="city" name="city" required>
-            </div>
-            <div class="form-group">
-              <label for="state">State</label>
-              <input type="text" id="state" name="state" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="zip">ZIP Code</label>
-              <input type="text" id="zip" name="zip" required>
-            </div>
-            <div class="form-group">
-              <label for="country">Country</label>
-              <input type="text" id="country" name="country" value="United States" required>
-            </div>
-          </div>
+
+    <div style="max-width: 900px; margin: 0 auto;">
+
+      <!-- Guest Checkout Notice -->
+      <div style="margin-bottom: 30px; text-align: center; background: var(--light-bg); padding: 20px 30px; border-radius: 12px; border: 2px solid var(--border-color);">
+        <h2 style="margin-bottom: 15px; font-size: 1.5em;">Ready to Complete Your Order?</h2>
+        <p style="margin: 0 0 10px 0; color: var(--text-color); font-size: 1.05em;">
+          <strong>Guest Checkout Available:</strong> No account required! Complete your purchase quickly and securely.
+        </p>
+        <p style="margin: 0; color: var(--text-color); font-size: 0.95em;">
+          <a href="login.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Already have an account? Login here</a>
+        </p>
+      </div>
+
+      <!-- Checkout Instructions -->
+      <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 2px solid var(--border-color); text-align: center;">
+
+        <div style="margin-bottom: 30px;">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" style="margin: 0 auto; display: block; margin-bottom: 20px;">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" fill="var(--primary-color)"/>
+          </svg>
+          <h3 style="color: var(--primary-color); margin-bottom: 15px;">Click the Cart Button to Checkout</h3>
+          <p style="color: var(--text-color); line-height: 1.7; margin-bottom: 25px; font-size: 1.05em;">
+            Our secure Snipcart checkout will open when you click the <strong>Cart</strong> button in the navigation menu above.
+            You can review your items, enter shipping details, and complete your purchase safely.
+          </p>
+          <button class="btn snipcart-checkout" style="font-size: 1.15em; padding: 18px 40px;">
+            Open Cart & Checkout
+          </button>
         </div>
-        <!-- Payment Information -->
-        <div class="checkout-section" style="margin-top: 30px;">
-          <h2><span class="section-number">2</span>Payment Information</h2>
-          
-          <div class="payment-methods">
-            <label class="payment-method active">
-              <input type="radio" name="payment" value="card" checked>
-              <div class="payment-icon">💳</div>
-              <div class="payment-label">Card</div>
-            </label>
-            <label class="payment-method">
-              <input type="radio" name="payment" value="paypal">
-              <div class="payment-icon">🅿️</div>
-              <div class="payment-label">PayPal</div>
-            </label>
-            <label class="payment-method">
-              <input type="radio" name="payment" value="apple">
-              <div class="payment-icon">🍎</div>
-              <div class="payment-label">Apple Pay</div>
-            </label>
-          </div>
-          <div id="card-payment" class="payment-details">
-            <div class="form-group">
-              <label for="card-element">Card Information</label>
-              <div id="card-element">
-                <!-- Stripe card element will be inserted here -->
+
+        <!-- Trust & Payment Info -->
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid var(--border-color);">
+          <h3 style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.3em;">Safe & Secure Checkout</h3>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-bottom: 25px; text-align: left;">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--primary-color)" style="flex-shrink: 0; margin-top: 2px;">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+              </svg>
+              <div>
+                <strong style="color: var(--dark-accent);">SSL Encrypted</strong>
+                <p style="margin: 5px 0 0 0; font-size: 0.9em; color: var(--text-color); opacity: 0.8;">Your data is protected</p>
               </div>
-              <div id="card-errors" role="alert"></div>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--primary-color)" style="flex-shrink: 0; margin-top: 2px;">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+              <div>
+                <strong style="color: var(--dark-accent);">Guest Checkout</strong>
+                <p style="margin: 5px 0 0 0; font-size: 0.9em; color: var(--text-color); opacity: 0.8;">No account required</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--primary-color)" style="flex-shrink: 0; margin-top: 2px;">
+                <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+              </svg>
+              <div>
+                <strong style="color: var(--dark-accent);">Free Shipping</strong>
+                <p style="margin: 5px 0 0 0; font-size: 0.9em; color: var(--text-color); opacity: 0.8;">On orders over $50</p>
+              </div>
             </div>
           </div>
-          <div id="paypal-payment" class="payment-details" style="display: none;">
-            <p style="text-align: center; padding: 20px; background: var(--light-bg); border-radius: 8px;">
-              You will be redirected to PayPal to complete your payment.
-            </p>
+
+          <div style="margin-top: 25px;">
+            <p style="font-size: 0.9em; margin-bottom: 12px; color: var(--text-color); opacity: 0.85;">We Accept:</p>
+            <div style="display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap;">
+              <span style="padding: 8px 15px; background: var(--light-bg); border-radius: 6px; font-weight: 600; font-size: 0.85em; border: 1px solid var(--border-color);">💳 Visa</span>
+              <span style="padding: 8px 15px; background: var(--light-bg); border-radius: 6px; font-weight: 600; font-size: 0.85em; border: 1px solid var(--border-color);">💳 Mastercard</span>
+              <span style="padding: 8px 15px; background: var(--light-bg); border-radius: 6px; font-weight: 600; font-size: 0.85em; border: 1px solid var(--border-color);">💳 Amex</span>
+              <span style="padding: 8px 15px; background: var(--light-bg); border-radius: 6px; font-weight: 600; font-size: 0.85em; border: 1px solid var(--border-color);">🅿️ PayPal</span>
+              <span style="padding: 8px 15px; background: var(--light-bg); border-radius: 6px; font-weight: 600; font-size: 0.85em; border: 1px solid var(--border-color);">🍎 Apple Pay</span>
+              <span style="padding: 8px 15px; background: var(--light-bg); border-radius: 6px; font-weight: 600; font-size: 0.85em; border: 1px solid var(--border-color);">🔵 Google Pay</span>
+            </div>
           </div>
-          <div id="apple-payment" class="payment-details" style="display: none;">
-            <p style="text-align: center; padding: 20px; background: var(--light-bg); border-radius: 8px;">
-              Apple Pay will be activated for checkout.
-            </p>
-          </div>
+
         </div>
-      </div>
-      <!-- Right Column: Order Summary -->
-      <div>
-        <div class="checkout-section">
-          <h2>Order Summary</h2>
-          
-          <div id="order-items">
-            <!-- Order items will be dynamically inserted here -->
-          </div>
-          <div class="summary-totals">
-            <div class="summary-row">
-              <span>Subtotal:</span>
-              <span id="checkout-subtotal">$0.00</span>
-            </div>
-            <div class="summary-row">
-              <span>Shipping:</span>
-              <span id="checkout-shipping">$0.00</span>
-            </div>
-            <div class="summary-row">
-              <span>Tax (10%):</span>
-              <span id="checkout-tax">$0.00</span>
-            </div>
-            <div class="summary-row total">
-              <span>Total:</span>
-              <span id="checkout-total">$0.00</span>
-            </div>
-          </div>
-          <button type="submit" class="btn place-order-btn">Place Order</button>
-          <div class="secure-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-            </svg>
-            Secure SSL encrypted payment
-          </div>
+
+        <!-- Return Policy Link -->
+        <div style="margin-top: 30px; padding-top: 25px; border-top: 2px solid var(--border-color);">
+          <p style="font-size: 0.95em; color: var(--text-color); margin: 0;">
+            Questions? <a href="contact.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Contact Us</a> |
+            <a href="terms.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Return Policy</a>
+          </p>
         </div>
+
       </div>
-    </form>
+    </div>
   </main>
     <!-- ENHANCED FOOTER -->
   <footer class="main-footer">
@@ -762,7 +535,5 @@
   <script src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
   <!-- Mobile Menu JavaScript -->
   <script src="menu.js"></script>
-  <!-- Checkout JavaScript (for custom checkout if needed) -->
-  <script src="checkout.js"></script>
 </body>
 </html>

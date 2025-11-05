@@ -236,12 +236,50 @@ h3 {
   letter-spacing: 0.5px;
   border: none;
   cursor: pointer;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
   background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+}
+
+/* Mobile Touch Target Optimization - 48px Minimum */
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+a.btn,
+.snipcart-add-item,
+.hamburger {
+  min-height: 48px;
+}
+
+/* Form inputs - ensure adequate touch targets */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+  min-height: 48px;
+}
+
+/* Navigation links - adequate spacing for mobile */
+@media (max-width: 768px) {
+  .main-nav a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 /* --- Welcome Section (Homepage) --- */
