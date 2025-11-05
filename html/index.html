@@ -272,6 +272,14 @@
       background-color: #D4B896 !important;
       color: #FFFFFF !important;
       border-radius: 50% !important;
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      min-height: 32px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 !important;
     }
 
     /* Fix Blue Highlights - Replace with Theme Colors */
@@ -320,7 +328,40 @@
     .snipcart-textbox:focus,
     button:focus,
     a:focus {
-      outline-color: #C9A886 !important;
+      outline: none !important;
+      box-shadow: 0 0 0 3px rgba(201, 168, 134, 0.4) !important;
+    }
+
+    /* Circular focus for quantity buttons */
+    .snipcart__actions--link.snipcart-item-quantity__remove:focus,
+    .snipcart__actions--link.snipcart-item-quantity__add:focus {
+      outline: none !important;
+      box-shadow: 0 0 0 3px rgba(201, 168, 134, 0.5) !important;
+    }
+
+    /* Remove item button (trash icon) - ensure circular styling */
+    .snipcart-item-line__remove,
+    button.snipcart__button--icon,
+    .snipcart__actions--link[aria-label*="Remove"],
+    .snipcart__actions--link[aria-label*="Delete"] {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
+      min-height: 32px !important;
+      border-radius: 50% !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0 !important;
+    }
+
+    /* Focus state for remove/delete buttons */
+    .snipcart-item-line__remove:focus,
+    button.snipcart__button--icon:focus,
+    .snipcart__actions--link[aria-label*="Remove"]:focus,
+    .snipcart__actions--link[aria-label*="Delete"]:focus {
+      outline: none !important;
+      box-shadow: 0 0 0 3px rgba(201, 168, 134, 0.5) !important;
     }
 
     /* Active/Selected States */
@@ -328,6 +369,7 @@
     .snipcart-item-quantity__remove:active,
     .snipcart-item-quantity__add:active {
       background-color: #B89968 !important;
+      box-shadow: none !important;
     }
 
     /* Checkout Steps Navigation */
