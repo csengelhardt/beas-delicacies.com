@@ -35,6 +35,8 @@
     [data-snipcart-layout],
     [class*="snipcart"] {
       z-index: 1500 !important;
+      /* Remove CSS containment that might trap dropdowns */
+      contain: none !important;
     }
 
     /* Z-INDEX FIX: Ensure dropdown menus appear above all other elements */
@@ -45,8 +47,32 @@
     .snipcart__actions--link,
     [class*="snipcart"][class*="dropdown"],
     [class*="snipcart"][class*="select"] {
+      /* Force GPU layer rendering */
+      transform: translateZ(0) !important;
+      will-change: transform !important;
+      /* High z-index with proper positioning */
       position: relative !important;
       z-index: 9999 !important;
+      /* Remove any containment */
+      contain: none !important;
+      /* Ensure smooth rendering */
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+
+    /* Specifically target the dropdown menu that appears when opened */
+    .snipcart__select-dropdown-menu,
+    .snipcart-base-select__menu,
+    [class*="snipcart"][class*="menu"],
+    [class*="Select__menu"] {
+      /* Use fixed positioning to escape parent containers */
+      position: fixed !important;
+      z-index: 99999 !important;
+      /* Force onto its own layer */
+      transform: translateZ(0) !important;
+      will-change: transform, opacity !important;
+      /* Ensure it's on top of everything */
+      isolation: isolate !important;
     }
 
     /* Cart Container Background - Match website theme */
@@ -568,6 +594,69 @@
 
   <!-- Mobile Menu JavaScript -->
   <script src="menu.js"></script>
+
+
+  <!-- Country Dropdown Fix: GPU Layer & Portal Pattern -->
+  <script>
+    // Wait for Snipcart to fully load
+    document.addEventListener('snipcart.ready', function() {
+      // Use MutationObserver to detect when dropdowns are added to the DOM
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1) { // Element node
+              // Check if this is a dropdown menu or contains one
+              const dropdowns = node.querySelectorAll ?
+                node.querySelectorAll('[class*="select"][class*="menu"], [class*="dropdown-menu"], .snipcart__select-dropdown-menu') :
+                [];
+
+              // Also check if the node itself is a dropdown
+              const isDropdown = node.className && (
+                node.className.includes('menu') ||
+                node.className.includes('dropdown')
+              );
+
+              if (isDropdown || dropdowns.length > 0) {
+                // Apply aggressive z-index and rendering fixes
+                const targets = isDropdown ? [node] : Array.from(dropdowns);
+                targets.forEach(function(dropdown) {
+                  dropdown.style.position = 'fixed';
+                  dropdown.style.zIndex = '999999';
+                  dropdown.style.transform = 'translateZ(0)';
+                  dropdown.style.willChange = 'transform, opacity';
+                  dropdown.style.isolation = 'isolate';
+                });
+              }
+            }
+          });
+        });
+      });
+
+      // Observe the Snipcart container for any DOM changes
+      const snipcartContainer = document.getElementById('snipcart');
+      if (snipcartContainer) {
+        observer.observe(snipcartContainer, {
+          childList: true,
+          subtree: true
+        });
+      }
+    });
+
+    // Also try to fix dropdowns on click events (fallback)
+    document.addEventListener('click', function(e) {
+      // Small delay to let the dropdown render
+      setTimeout(function() {
+        const menus = document.querySelectorAll('[class*="select"][class*="menu"], [class*="dropdown-menu"], .snipcart__select-dropdown-menu');
+        menus.forEach(function(menu) {
+          if (menu.offsetParent !== null) { // Is visible
+            menu.style.position = 'fixed';
+            menu.style.zIndex = '999999';
+            menu.style.transform = 'translateZ(0)';
+          }
+        });
+      }, 10);
+    }, true);
+  </script>
 
 </body>
 </html>
