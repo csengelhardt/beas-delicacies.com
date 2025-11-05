@@ -28,15 +28,35 @@
     }
 
     /* Z-INDEX FIX: Ensure dropdown menus appear above all other elements */
-    /* IMPORTANT: position: relative is required for z-index to work */
+    /* Target the dropdown field container */
+    .snipcart__field--select,
+    .snipcart__field,
+    .snipcart-billing-form__field,
+    .snipcart-form__field,
+    [class*="snipcart"][class*="field"] {
+      position: relative !important;
+      z-index: 100 !important;
+    }
+
+    /* Target the actual dropdown menu/list that appears when clicking */
     .snipcart__select-dropdown,
     .snipcart__select-dropdown-container,
+    .snipcart__select-options,
     .snipcart__dropdown,
+    .snipcart__dropdown-menu,
     .snipcart__actions--link,
     [class*="snipcart"][class*="dropdown"],
-    [class*="snipcart"][class*="select"] {
+    [class*="snipcart"][class*="select"],
+    [class*="snipcart"][class*="options"] {
       position: relative !important;
-      z-index: 9999 !important;
+      z-index: 99999 !important;
+    }
+
+    /* Ensure country field specifically has proper stacking */
+    [data-snipcart-name="country"],
+    select[name="country"],
+    .snipcart__field--select:has(select[name="country"]) {
+      z-index: 150 !important;
     }
   </style>
 </head>
