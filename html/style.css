@@ -675,8 +675,11 @@ h3 {
   justify-content: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   font-weight: 600;
-  font-size: 0.85em;
+  font-size: 0.75em;
+  line-height: 1;
   color: var(--dark-accent);
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .footer-bottom {
