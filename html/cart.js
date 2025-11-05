@@ -1,5 +1,26 @@
 // Shopping Cart JavaScript for Bea's Delicacies
 
+// Baking-related toast messages
+const bakingMessages = [
+  "Goodie added!",
+  "Baked fresh!",
+  "Rising nicely!",
+  "Perfectly proofed!",
+  "Golden brown!",
+  "Just glazed!",
+  "Fresh batch!",
+  "Oven ready!",
+  "Dough doubled!",
+  "Kneaded that!",
+  "Sweet success!",
+  "Whisked away!"
+];
+
+// Get a random baking message
+function getRandomBakingMessage() {
+  return bakingMessages[Math.floor(Math.random() * bakingMessages.length)];
+}
+
 // Get cart from localStorage
 function getCart() {
   return JSON.parse(localStorage.getItem('cart')) || [];
@@ -41,7 +62,7 @@ function addToCart(product) {
   }
   
   saveCart(cart);
-  showNotification('Added to cart!');
+  showNotification(getRandomBakingMessage());
 }
 
 // Remove item from cart
