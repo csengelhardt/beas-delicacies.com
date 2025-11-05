@@ -1,7 +1,7 @@
-# Beas Delicacies - E-Commerce Integration Guide
+# Bea's Delicacies - E-Commerce Integration Guide
 
 ## Overview
-This package adds a complete login and payment system to your Beas Delicacies bakery website while maintaining the beautiful existing theme.
+This package adds a complete login and payment system to your Bea's Delicacies bakery website while maintaining the beautiful existing theme.
 
 ## New Files Created
 

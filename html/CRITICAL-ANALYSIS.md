@@ -5,7 +5,7 @@
 ### What You Have Now:
 ```html
 <footer class="main-footer">
-  <p>&copy; 2025 Beas Delicacies. All rights reserved.</p>
+  <p>&copy; 2025 Bea's Delicacies. All rights reserved.</p>
 </footer>
 ```
 

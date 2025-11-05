@@ -51,7 +51,7 @@ color: var(--text-color);    /* For body text */
 
 **Great Vibes** - Elegant cursive script for logo
 - Weight: 400 (regular)
-- Used for: Site logo "Beas Delicacies"
+- Used for: Site logo "Bea's Delicacies"
 - Conveys: Elegance, handcrafted quality, luxury
 
 **Playfair Display** - Elegant serif font for headings

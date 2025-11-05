@@ -1,4 +1,4 @@
-// Shopping Cart JavaScript for Beas Delicacies
+// Shopping Cart JavaScript for Bea's Delicacies
 
 // Get cart from localStorage
 function getCart() {

@@ -80,7 +80,7 @@ In EVERY HTML file (index.html, shop.html, about.html, etc.), find:
 
 ```html
 <footer class="main-footer">
-  <p>&copy; 2025 Beas Delicacies. All rights reserved.</p>
+  <p>&copy; 2025 Bea's Delicacies. All rights reserved.</p>
 </footer>
 ```
 

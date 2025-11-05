@@ -1,6 +1,6 @@
 # Snipcart Integration Setup Guide
 
-This guide will help you complete the Snipcart integration for Beas Delicacies.
+This guide will help you complete the Snipcart integration for Bea's Delicacies.
 
 ## What Was Done
 
