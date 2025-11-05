@@ -10,6 +10,22 @@
   <link rel="preconnect" href="https://app.snipcart.com">
   <link rel="preconnect" href="https://cdn.snipcart.com">
   <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+  <style>
+    /* Z-INDEX FIX: Ensure cart appears above header (header is z-index: 1000) */
+    #snipcart,
+    #snipcart-cart-container,
+    .snipcart,
+    .snipcart-modal,
+    .snipcart__cart--side,
+    .snipcart-cart,
+    .snipcart-layout,
+    .snipcart__box,
+    .snipcart-overlay,
+    [data-snipcart-layout],
+    [class*="snipcart"] {
+      z-index: 1500 !important;
+    }
+  </style>
 </head>
 <body>
   <div class="top-bar">
