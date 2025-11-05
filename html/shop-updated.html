@@ -162,18 +162,32 @@
     .snipcart__select,
     select.snipcart-input,
     .snipcart-form__select {
-      max-width: 100% !important;
-      width: 100% !important;
-      z-index: 10 !important;
+      max-width: 50% !important;
+      width: auto !important;
+      min-width: 200px !important;
+      position: relative !important;
+      z-index: 100 !important;
     }
 
-    /* Dropdown options container */
+    /* Ensure select field parent has proper positioning */
+    .snipcart-form__field {
+      position: relative !important;
+      z-index: 100 !important;
+    }
+
+    /* Dropdown options container - ensure it appears on top */
     .snipcart-form__field .snipcart__select-menu,
     .snipcart__select-menu,
-    [class*="snipcart"][class*="menu"] {
-      z-index: 9999 !important;
+    [class*="snipcart"][class*="menu"],
+    .snipcart-form__select-wrapper,
+    [class*="__menu"],
+    [class*="Menu"] {
+      z-index: 10000 !important;
       max-height: 300px !important;
       overflow-y: auto !important;
+      position: absolute !important;
+      background-color: white !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     }
 
     /* Cart Items */
