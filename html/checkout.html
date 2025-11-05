@@ -63,6 +63,34 @@
       /* Ensure it's on top of everything */
       isolation: isolate !important;
     }
+
+    /* FOCUS OUTLINE FIX: Remove oval highlights from Snipcart buttons */
+    /* Override the global :focus-visible styles from style.css */
+    [class*="snipcart"] button:focus,
+    [class*="snipcart"] button:focus-visible,
+    .snipcart button:focus,
+    .snipcart button:focus-visible,
+    .snipcart__actions button:focus,
+    .snipcart__actions button:focus-visible,
+    .snipcart__item__remove:focus,
+    .snipcart__item__remove:focus-visible,
+    .snipcart__quantity button:focus,
+    .snipcart__quantity button:focus-visible,
+    [class*="snipcart__item"] button:focus,
+    [class*="snipcart__item"] button:focus-visible {
+      outline: none !important;
+      outline-offset: 0 !important;
+    }
+
+    /* Add a subtle box-shadow instead for better UX */
+    [class*="snipcart"] button:focus-visible,
+    .snipcart button:focus-visible,
+    .snipcart__actions button:focus-visible,
+    .snipcart__item__remove:focus-visible,
+    .snipcart__quantity button:focus-visible,
+    [class*="snipcart__item"] button:focus-visible {
+      box-shadow: 0 0 0 2px rgba(201, 168, 134, 0.5) !important;
+    }
   </style>
 </head>
 <body>
