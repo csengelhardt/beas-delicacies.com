@@ -18,15 +18,120 @@
   box-sizing: border-box;
 }
 
-/* Remove default focus outline and add custom theme-colored outline */
+/* ============================================
+   INNOVATIVE BOX-SHADOW FOCUS SYSTEM
+   Replaces traditional outline with layered
+   box-shadows for perfect shape adherence
+   ============================================ */
+
+/* Focus ring customization variables */
+*:focus-visible {
+  --focus-color: var(--accent-color);
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+  --focus-glow-size: 8px;
+  --focus-glow-opacity: 0.15;
+}
+
+/* Remove default browser focus styles */
 *:focus {
   outline: none;
 }
 
+/* Sophisticated multi-layer box-shadow focus indicator */
 *:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 0;
-  border-radius: inherit;
+  box-shadow:
+    /* Inner ring - crisp definition */
+    0 0 0 var(--focus-ring-offset) var(--bg-color),
+    /* Main focus ring */
+    0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-color),
+    /* Outer glow - soft depth */
+    0 0 var(--focus-glow-size) calc(var(--focus-glow-size) / 2) rgba(184, 153, 104, var(--focus-glow-opacity)),
+    /* Preserve existing shadows if any */
+    var(--existing-shadow, none);
+
+  /* Smooth transition for polished feel */
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+  /* Optional subtle lift effect */
+  transform: translateY(-1px);
+
+  /* Ensure focus ring follows element shape */
+  position: relative;
+  z-index: 1;
+}
+
+/* Animation: Subtle pulsing glow for enhanced visibility */
+@keyframes focusPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 var(--focus-ring-offset) var(--bg-color),
+      0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-color),
+      0 0 var(--focus-glow-size) calc(var(--focus-glow-size) / 2) rgba(184, 153, 104, 0.15),
+      var(--existing-shadow, none);
+  }
+  50% {
+    box-shadow:
+      0 0 0 var(--focus-ring-offset) var(--bg-color),
+      0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-color),
+      0 0 calc(var(--focus-glow-size) * 1.2) calc(var(--focus-glow-size) / 1.5) rgba(184, 153, 104, 0.28),
+      var(--existing-shadow, none);
+  }
+}
+
+/* Apply pulse animation to interactive elements */
+button:focus-visible,
+a:focus-visible,
+input[type="submit"]:focus-visible,
+input[type="button"]:focus-visible,
+.btn:focus-visible,
+.snipcart-add-item:focus-visible {
+  animation: focusPulse 2.5s ease-in-out infinite;
+}
+
+/* Enhanced focus for form inputs */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 0px;
+  --focus-glow-size: 6px;
+  /* Don't lift inputs, just enhance the ring */
+  transform: none;
+}
+
+/* Preserve element's existing box-shadow on focus */
+.product-card:focus-within {
+  --existing-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.btn:focus-visible {
+  --existing-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Snipcart elements - subtle focus without interference */
+[class*="snipcart"]:focus-visible,
+.snipcart *:focus-visible {
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 1px;
+  --focus-glow-size: 4px;
+  transform: none;
+}
+
+/* Links in navigation - emphasized focus */
+.main-nav a:focus-visible,
+.footer-links a:focus-visible {
+  --focus-ring-width: 2px;
+  --focus-glow-size: 10px;
+  --focus-glow-opacity: 0.2;
+}
+
+/* Social icons - circular focus ring */
+.social-link:focus-visible {
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 3px;
+  --focus-glow-size: 12px;
+  --focus-glow-opacity: 0.3;
 }
 
 body {
