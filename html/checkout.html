@@ -6,6 +6,59 @@
   <title>Bea's Delicacies - Checkout</title>
   <link rel="icon" type="image/png" href="images/cropped-cake_3087281.png">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Snipcart Integration -->
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+
+  <!-- Snipcart Theme Customization -->
+  <style>
+    :root {
+      --snipcart-primary: #C9A886;
+      --snipcart-primary-hover: #B89968;
+      --snipcart-secondary: #D4B896;
+      --snipcart-text: #4A4A4A;
+      --snipcart-background: #FAF7F2;
+    }
+
+    .snipcart-cart-button {
+      background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%) !important;
+      color: var(--dark-accent) !important;
+      border-radius: 30px !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 600 !important;
+      padding: 15px 35px !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .snipcart-cart-button:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
+    }
+
+    .snipcart__font--bold {
+      font-family: 'Playfair Display', serif !important;
+      color: var(--primary-color) !important;
+    }
+
+    .snipcart-modal__container {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .snipcart-base-button--primary {
+      background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%) !important;
+      color: var(--dark-accent) !important;
+      border-radius: 30px !important;
+      font-weight: 600 !important;
+    }
+
+    .snipcart-base-button--primary:hover {
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%) !important;
+    }
+  </style>
+
   <script src="https://js.stripe.com/v3/"></script>
   <style>
     .checkout-container {
@@ -244,7 +297,7 @@
         <li><a href="shop.html">Shop</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        <li><a href="#" class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</a></li>
         <li><a href="login.html">Login</a></li>
       </ul>
     </nav>
@@ -494,8 +547,16 @@
     </div>
   </footer>
 
+  <!-- Snipcart Required Elements -->
+  <div id="snipcart" data-api-key="YTU1ZTc4NjYtODk0MS00ZTEzLTk4MTMtMjg3NDBiMDBhMjBhNjM4OTc5MDMxMjc4NDQyNzYz" data-config-modal-style="side" hidden></div>
+
+  <!-- Snipcart JavaScript -->
+  <script src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+  <!-- Mobile Menu JavaScript -->
   <script src="menu.js"></script>
-  <script src="cart.js"></script>
+
+  <!-- Checkout JavaScript (for custom checkout if needed) -->
   <script src="checkout.js"></script>
 
 </body>

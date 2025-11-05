@@ -6,6 +6,58 @@
   <title>Bea's Delicacies - Shop</title>
   <link rel="icon" type="image/png" href="images/cropped-cake_3087281.png">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Snipcart Integration -->
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+
+  <!-- Snipcart Theme Customization -->
+  <style>
+    :root {
+      --snipcart-primary: #C9A886;
+      --snipcart-primary-hover: #B89968;
+      --snipcart-secondary: #D4B896;
+      --snipcart-text: #4A4A4A;
+      --snipcart-background: #FAF7F2;
+    }
+
+    .snipcart-cart-button {
+      background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%) !important;
+      color: var(--dark-accent) !important;
+      border-radius: 30px !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 600 !important;
+      padding: 15px 35px !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .snipcart-cart-button:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
+    }
+
+    .snipcart__font--bold {
+      font-family: 'Playfair Display', serif !important;
+      color: var(--primary-color) !important;
+    }
+
+    .snipcart-modal__container {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .snipcart-base-button--primary {
+      background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%) !important;
+      color: var(--dark-accent) !important;
+      border-radius: 30px !important;
+      font-weight: 600 !important;
+    }
+
+    .snipcart-base-button--primary:hover {
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%) !important;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,7 +78,7 @@
         <li><a href="shop.html" class="active">Shop</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        <li><a href="#" class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</a></li>
         <li><a href="login.html">Login</a></li>
       </ul>
     </nav>
@@ -39,22 +91,40 @@
     <h1 style="text-align: center; margin-bottom: 30px;">Shop Our Goodies</h1>
 
     <div class="product-grid">
-      
+
       <div class="product-card">
         <img src="images/cupcakes.jpg" alt="Vanilla Cupcake">
         <div class="product-card-content">
           <h3>Classic Vanilla Cupcakes (Dozen)</h3>
           <p class="product-price">$30.00</p>
-          <a href="#" class="btn">Add to Cart</a>
+          <button
+            class="btn snipcart-add-item"
+            data-item-id="vanilla-cupcakes-dozen"
+            data-item-price="30.00"
+            data-item-url="/shop.html"
+            data-item-description="A dozen of our classic vanilla cupcakes with buttercream frosting"
+            data-item-image="images/cupcakes.jpg"
+            data-item-name="Classic Vanilla Cupcakes (Dozen)">
+            Add to Cart
+          </button>
         </div>
       </div>
-      
+
       <div class="product-card">
         <img src="images/chocolate_cake.jpg" alt="Chocolate Cake">
         <div class="product-card-content">
           <h3>Decadent Chocolate Cake</h3>
           <p class="product-price">$45.00</p>
-          <a href="#" class="btn">Add to Cart</a>
+          <button
+            class="btn snipcart-add-item"
+            data-item-id="chocolate-cake"
+            data-item-price="45.00"
+            data-item-url="/shop.html"
+            data-item-description="Rich, moist chocolate cake with chocolate ganache"
+            data-item-image="images/chocolate_cake.jpg"
+            data-item-name="Decadent Chocolate Cake">
+            Add to Cart
+          </button>
         </div>
       </div>
 
@@ -63,16 +133,34 @@
         <div class="product-card-content">
           <h3>Buttery Croissants (Half Dozen)</h3>
           <p class="product-price">$18.00</p>
-          <a href="#" class="btn">Add to Cart</a>
+          <button
+            class="btn snipcart-add-item"
+            data-item-id="croissants-half-dozen"
+            data-item-price="18.00"
+            data-item-url="/shop.html"
+            data-item-description="Six freshly baked buttery croissants"
+            data-item-image="images/croissants.jpg"
+            data-item-name="Buttery Croissants (Half Dozen)">
+            Add to Cart
+          </button>
         </div>
       </div>
-      
+
       <div class="product-card">
         <img src="images/chocolate_chip_cookies.jpg" alt="Chocolate Chip Cookies">
         <div class="product-card-content">
           <h3>Chewy Chocolate Chip Cookies</h3>
           <p class="product-price">$24.00</p>
-          <a href="#" class="btn">Add to Cart</a>
+          <button
+            class="btn snipcart-add-item"
+            data-item-id="chocolate-chip-cookies"
+            data-item-price="24.00"
+            data-item-url="/shop.html"
+            data-item-description="Classic chewy chocolate chip cookies, baked fresh"
+            data-item-image="images/chocolate_chip_cookies.jpg"
+            data-item-name="Chewy Chocolate Chip Cookies">
+            Add to Cart
+          </button>
         </div>
       </div>
 
@@ -173,9 +261,14 @@
     </div>
   </footer>
 
+  <!-- Snipcart Required Elements -->
+  <div id="snipcart" data-api-key="YTU1ZTc4NjYtODk0MS00ZTEzLTk4MTMtMjg3NDBiMDBhMjBhNjM4OTc5MDMxMjc4NDQyNzYz" data-config-modal-style="side" hidden></div>
+
+  <!-- Snipcart JavaScript -->
+  <script src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+  <!-- Mobile Menu JavaScript -->
   <script src="menu.js"></script>
-  <script src="cart.js"></script>
-  <script src="auth.js"></script>
 
 </body>
 </html>
