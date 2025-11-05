@@ -144,35 +144,82 @@
       box-shadow: 0 0 0 3px rgba(201, 168, 134, 0.1) !important;
     }
     
-    /* FIX: Form Field Layout - Prevent Overlap */
-    .snipcart-form__field {
-      position: relative !important;
-      z-index: auto !important;
-      margin-bottom: 20px !important;
+    /* ==========================================
+       CRITICAL FIX: Snipcart Billing Form Layout
+       ========================================== */
+    
+    /* Fix the grid layout that's causing overlap */
+    .snipcart-billing-form,
+    .snipcart-form,
+    .snipcart-checkout__content form {
+      display: block !important;
+    }
+    
+    /* Force all form fields to stack vertically */
+    .snipcart-form__row,
+    .snipcart__row,
+    div[class*="snipcart"][class*="row"] {
+      display: block !important;
+      grid-template-columns: 1fr !important;
+      margin-bottom: 15px !important;
       clear: both !important;
     }
     
-    /* FIX: Country Dropdown - Proper Width and Z-Index */
-    .snipcart-form__field select,
-    .snipcart__select,
-    select.snipcart-input,
-    .snipcart-form__select,
-    .snipcart-form__field select[name="country"] {
+    /* Each form field should be full width */
+    .snipcart-form__field,
+    .snipcart-form__field--half,
+    .snipcart__field,
+    div[class*="snipcart"][class*="field"] {
       width: 100% !important;
       max-width: 100% !important;
-      min-width: auto !important;
-      position: relative !important;
-      z-index: 1000 !important;
-    }
-    
-    /* FIX: Province/State field should not overlap country */
-    .snipcart-form__field select[name="province"],
-    .snipcart-form__field select[name="state"] {
+      float: none !important;
+      display: block !important;
+      margin-bottom: 15px !important;
       position: relative !important;
       z-index: 1 !important;
     }
     
-    /* FIX: Dropdown options container - ensure it appears on top */
+    /* Country field specific - ensure it's visible and clickable */
+    .snipcart-form__field select[name="country"],
+    select[name="country"].snipcart-input,
+    .snipcart__select[name="country"],
+    div[data-test-id="country"] select,
+    .snipcart-form__field:has(select[name="country"]) {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 100% !important;
+      position: relative !important;
+      z-index: 1000 !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      height: auto !important;
+      min-height: 44px !important;
+      pointer-events: auto !important;
+    }
+    
+    /* Province/State field - keep it below country */
+    .snipcart-form__field select[name="province"],
+    .snipcart-form__field select[name="state"],
+    select[name="province"].snipcart-input,
+    select[name="state"].snipcart-input {
+      position: relative !important;
+      z-index: 1 !important;
+      margin-top: 15px !important;
+    }
+    
+    /* All select dropdowns */
+    .snipcart-form__field select,
+    .snipcart__select,
+    select.snipcart-input,
+    .snipcart-form__select {
+      width: 100% !important;
+      max-width: 100% !important;
+      display: block !important;
+      position: relative !important;
+    }
+    
+    /* Dropdown menu positioning */
     .snipcart-form__field .snipcart__select-menu,
     .snipcart__select-menu,
     [class*="snipcart"][class*="menu"],
@@ -190,11 +237,20 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     }
     
-    /* FIX: Ensure form rows have proper spacing */
-    .snipcart-form__row,
-    .snipcart__row {
-      margin-bottom: 20px !important;
-      clear: both !important;
+    /* Fix for React-Select (Snipcart uses this for dropdowns) */
+    div[class*="control"],
+    div[class*="Control"],
+    .snipcart__select div[class*="control"] {
+      width: 100% !important;
+      min-height: 44px !important;
+      z-index: 1000 !important;
+    }
+    
+    /* Ensure labels are visible */
+    .snipcart-form__label,
+    label[class*="snipcart"] {
+      display: block !important;
+      margin-bottom: 8px !important;
     }
     
     /* Cart Items */
