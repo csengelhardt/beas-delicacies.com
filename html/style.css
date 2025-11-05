@@ -95,7 +95,7 @@ h3 {
 }
 
 .logo {
-  font-size: 3.0em;
+  font-size: 3.5em;
   font-weight: 400;
   color: var(--primary-color);
   text-decoration: none;
@@ -489,7 +489,7 @@ h3 {
 }
 
 .footer-logo {
-  font-size: 2.4em;
+  font-size: 2.9em;
   font-family: 'Great Vibes', cursive;
   color: var(--light-bg);
   text-decoration: none;
@@ -764,7 +764,7 @@ h3 {
   }
 
   .logo {
-    font-size: 2.0em;
+    font-size: 2.5em;
   }
 
   .main-nav ul {
