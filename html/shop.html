@@ -26,6 +26,16 @@
     [class*="snipcart"] {
       z-index: 1500 !important;
     }
+
+    /* Z-INDEX FIX: Ensure dropdown menus appear above all other elements */
+    .snipcart__select-dropdown,
+    .snipcart__select-dropdown-container,
+    .snipcart__dropdown,
+    .snipcart__actions--link,
+    [class*="snipcart"][class*="dropdown"],
+    [class*="snipcart"][class*="select"] {
+      z-index: 2000 !important;
+    }
   </style>
 </head>
 <body>
