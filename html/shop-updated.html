@@ -37,13 +37,15 @@
     }
 
     /* Z-INDEX FIX: Ensure dropdown menus appear above all other elements */
+    /* IMPORTANT: position: relative is required for z-index to work */
     .snipcart__select-dropdown,
     .snipcart__select-dropdown-container,
     .snipcart__dropdown,
     .snipcart__actions--link,
     [class*="snipcart"][class*="dropdown"],
     [class*="snipcart"][class*="select"] {
-      z-index: 2000 !important;
+      position: relative !important;
+      z-index: 9999 !important;
     }
 
     /* Cart Container Background - Match website theme */
