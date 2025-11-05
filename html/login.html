@@ -23,6 +23,21 @@
       --snipcart-background: #FAF7F2;
     }
 
+    /* Z-INDEX FIX: Ensure cart appears above header (header is z-index: 1000) */
+    #snipcart,
+    #snipcart-cart-container,
+    .snipcart,
+    .snipcart-modal,
+    .snipcart__cart--side,
+    .snipcart-cart,
+    .snipcart-layout,
+    .snipcart__box,
+    .snipcart-overlay,
+    [data-snipcart-layout],
+    [class*="snipcart"] {
+      z-index: 1500 !important;
+    }
+
     .snipcart-cart-button {
       background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%) !important;
       color: var(--dark-accent) !important;
