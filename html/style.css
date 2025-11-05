@@ -979,7 +979,11 @@ h3 {
   .footer-section {
     text-align: center;
   }
-  
+
+  .footer-contact-item {
+    justify-content: center;
+  }
+
   .social-links {
     justify-content: center;
   }
