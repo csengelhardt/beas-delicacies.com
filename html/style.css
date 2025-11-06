@@ -11,9 +11,9 @@
   --light-bg: #EDEDFF; /* Very light periwinkle */
   --border-color: #DCDCFF; /* Soft periwinkle border */
 
-  /* Gradient-specific colors (10% lighter for better visual balance) */
-  --gradient-accent: #8585E0; /* Lighter accent for gradient endpoints */
-  --gradient-dark-accent: #6666B3; /* Lighter dark accent for gradient endpoints */
+  /* Gradient-specific colors (20% lighter total for better visual balance) */
+  --gradient-accent: #9191E3; /* Lighter accent for gradient endpoints */
+  --gradient-dark-accent: #7575BB; /* Lighter dark accent for gradient endpoints */
 }
 
 * {
