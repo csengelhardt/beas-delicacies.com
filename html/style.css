@@ -176,6 +176,11 @@ body {
   z-index: 9999 !important;
 }
 
+/* Exception: Sign-in buttons should not have elevated z-index */
+.snipcart-customer-signin {
+  z-index: 1 !important;
+}
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
