@@ -626,6 +626,7 @@ textarea {
   margin: 0 0 15px 0;
   position: relative;
   text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  color: var(--light-bg);
 }
 
 .account-hero p {
