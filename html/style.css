@@ -144,6 +144,22 @@ body {
   font-size: 16px;
 }
 
+/* Snipcart Cart Z-Index Fix - Ensure cart appears above header */
+#snipcart,
+.snipcart,
+.snipcart-modal,
+.snipcart-cart,
+[class*="snipcart"][class*="modal"],
+[class*="snipcart"][class*="cart"] {
+  z-index: 10000 !important;
+}
+
+/* Snipcart overlay should also be above header */
+.snipcart__overlay,
+[class*="snipcart"][class*="overlay"] {
+  z-index: 9999 !important;
+}
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
