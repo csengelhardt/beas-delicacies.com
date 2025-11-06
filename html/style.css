@@ -291,7 +291,7 @@ h3 {
 
 /* --- Hero Section (Homepage) --- */
 .hero {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-accent) 100%);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 75%, var(--dark-accent) 100%);
   color: white;
   padding: 80px 60px;
   display: flex;
@@ -600,7 +600,7 @@ textarea {
 
 /* --- Account Page --- */
 .account-hero {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-accent) 100%);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 75%, var(--dark-accent) 100%);
   color: white;
   text-align: center;
   padding: 80px 20px 60px;
@@ -743,7 +743,7 @@ textarea {
 
 /* --- Main Footer Container --- */
 .main-footer {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-accent) 100%);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 75%, var(--dark-accent) 100%);
   color: var(--light-bg);
   margin-top: 60px;
   box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
@@ -1180,7 +1180,7 @@ textarea {
     right: -100%;
     width: 280px;
     height: 100vh;
-    background: linear-gradient(135deg, var(--light-bg) 0%, var(--bg-color) 100%);
+    background: linear-gradient(135deg, var(--border-color) 0%, var(--light-bg) 75%, var(--bg-color) 100%);
     padding: 80px 30px 30px;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
     transition: right 0.3s ease;
