@@ -146,12 +146,12 @@
 }
 
 .guest-checkout .btn {
-  background: linear-gradient(135deg, var(--light-bg) 0%, var(--border-color) 100%);
+  background: linear-gradient(135deg, var(--bg-color) 0%, var(--light-bg) 75%, var(--border-color) 100%);
   color: var(--text-color);
 }
 
 .guest-checkout .btn:hover {
-  background: linear-gradient(135deg, var(--border-color) 0%, var(--light-bg) 100%);
+  background: linear-gradient(135deg, var(--border-color) 0%, var(--light-bg) 75%, var(--bg-color) 100%);
 }
 
 /* Responsive adjustments */
