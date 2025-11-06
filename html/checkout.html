@@ -10,60 +10,6 @@
   <link rel="preconnect" href="https://app.snipcart.com">
   <link rel="preconnect" href="https://cdn.snipcart.com">
   <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
-  <style>
-    /* Z-INDEX FIX: Ensure cart appears above header (header is z-index: 1000) */
-    #snipcart,
-    #snipcart-cart-container,
-    .snipcart,
-    .snipcart-modal,
-    .snipcart__cart--side,
-    .snipcart-cart,
-    .snipcart-layout,
-    .snipcart__box,
-    .snipcart-overlay,
-    [data-snipcart-layout],
-    [class*="snipcart"] {
-      z-index: 1500 !important;
-      /* Remove CSS containment that might trap dropdowns */
-      contain: none !important;
-    }
-
-    /* DROPDOWN FIX: Force dropdown into its own rendering layer */
-    /* This uses GPU acceleration to escape stacking context issues */
-    .snipcart__select-dropdown,
-    .snipcart__select-dropdown-container,
-    .snipcart__dropdown,
-    .snipcart__actions--link,
-    [class*="snipcart"][class*="dropdown"],
-    [class*="snipcart"][class*="select"] {
-      /* Force GPU layer rendering */
-      transform: translateZ(0) !important;
-      will-change: transform !important;
-      /* High z-index with proper positioning */
-      position: relative !important;
-      z-index: 9999 !important;
-      /* Remove any containment */
-      contain: none !important;
-      /* Ensure smooth rendering */
-      backface-visibility: hidden !important;
-      -webkit-backface-visibility: hidden !important;
-    }
-
-    /* Specifically target the dropdown menu that appears when opened */
-    .snipcart__select-dropdown-menu,
-    .snipcart-base-select__menu,
-    [class*="snipcart"][class*="menu"],
-    [class*="Select__menu"] {
-      /* Use fixed positioning to escape parent containers */
-      position: fixed !important;
-      z-index: 99999 !important;
-      /* Force onto its own layer */
-      transform: translateZ(0) !important;
-      will-change: transform, opacity !important;
-      /* Ensure it's on top of everything */
-      isolation: isolate !important;
-    }
-  </style>
 </head>
 <body>
   <div class="top-bar">
