@@ -598,6 +598,144 @@ textarea {
   resize: vertical;
 }
 
+/* --- Account Page --- */
+.account-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  text-align: center;
+  padding: 80px 20px 60px;
+  margin-top: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.account-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.account-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3em;
+  margin: 0 0 15px 0;
+  position: relative;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.account-hero p {
+  font-size: 1.2em;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.account-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.cta-section {
+  background: white;
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+  border: 2px solid var(--border-color);
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.cta-section h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  font-size: 2.2em;
+  margin: 0 0 20px 0;
+}
+
+.cta-section p {
+  color: var(--text-color);
+  font-size: 1.1em;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+.account-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.account-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.feature-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border: 2px solid var(--border-color);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border-color: var(--secondary-color);
+}
+
+.feature-icon {
+  font-size: 3em;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  font-size: 1.6em;
+  margin: 0 0 15px 0;
+}
+
+.feature-card p {
+  color: var(--text-color);
+  line-height: 1.7;
+  margin: 0;
+}
+
 /* ==============================================
    ENHANCED FOOTER STYLES
    ============================================== */
