@@ -2,14 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
 
 :root {
-  --primary-color: #C9A886; /* Soft tan/beige */
-  --secondary-color: #D4B896; /* Light tan */
-  --accent-color: #B89968; /* Golden tan */
-  --dark-accent: #8B7355; /* Warm brown */
-  --bg-color: #FAF7F2; /* Soft cream background */
-  --text-color: #4A4A4A; /* Warm gray text */
-  --light-bg: #F5F1EA; /* Creamy beige */
-  --border-color: #E5DDD0; /* Pale tan border */
+  --primary-color: #9999FF; /* Medium periwinkle */
+  --secondary-color: #CCCCFF; /* Light periwinkle - the gradient mid-point! */
+  --accent-color: #7777DD; /* Deeper periwinkle */
+  --dark-accent: #5555AA; /* Rich dark periwinkle */
+  --bg-color: #F8F8FF; /* Ghost white with periwinkle tint */
+  --text-color: #3A3A5A; /* Dark purple-gray text */
+  --light-bg: #EDEDFF; /* Very light periwinkle */
+  --border-color: #DCDCFF; /* Soft periwinkle border */
 }
 
 * {
@@ -55,7 +55,7 @@
     /* Main focus ring */
     0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-color),
     /* Outer glow - soft depth */
-    0 0 var(--focus-glow-size) calc(var(--focus-glow-size) / 2) rgba(184, 153, 104, var(--focus-glow-opacity)),
+    0 0 var(--focus-glow-size) calc(var(--focus-glow-size) / 2) rgba(119, 119, 221, var(--focus-glow-opacity)),
     /* Preserve existing shadows if any */
     var(--existing-shadow, none);
 
@@ -76,14 +76,14 @@
     box-shadow:
       0 0 0 var(--focus-ring-offset) var(--bg-color),
       0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-color),
-      0 0 var(--focus-glow-size) calc(var(--focus-glow-size) / 2) rgba(184, 153, 104, 0.15),
+      0 0 var(--focus-glow-size) calc(var(--focus-glow-size) / 2) rgba(119, 119, 221, 0.15),
       var(--existing-shadow, none);
   }
   50% {
     box-shadow:
       0 0 0 var(--focus-ring-offset) var(--bg-color),
       0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-color),
-      0 0 calc(var(--focus-glow-size) * 1.2) calc(var(--focus-glow-size) / 1.5) rgba(184, 153, 104, 0.28),
+      0 0 calc(var(--focus-glow-size) * 1.2) calc(var(--focus-glow-size) / 1.5) rgba(119, 119, 221, 0.28),
       var(--existing-shadow, none);
   }
 }
@@ -581,7 +581,7 @@ textarea {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--secondary-color);
-  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.15);
+  box-shadow: 0 0 0 3px rgba(204, 204, 255, 0.15);
   background-color: white;
 }
 
@@ -1216,7 +1216,7 @@ textarea {
 
   .main-nav a:hover,
   .main-nav a.active {
-    background: rgba(201, 168, 134, 0.1);
+    background: rgba(153, 153, 255, 0.1);
     border-left-color: var(--primary-color);
     padding-left: 20px;
   }

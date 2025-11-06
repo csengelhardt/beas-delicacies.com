@@ -306,7 +306,7 @@ async function sendOrderConfirmationEmail(order) {
     text: `Thank you for your order! Your order ID is ${order.orderId}.`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h1 style="color: #C9A886;">Thank You for Your Order!</h1>
+        <h1 style="color: #9999FF;">Thank You for Your Order!</h1>
         <p>Your order has been confirmed.</p>
         <h2>Order Details</h2>
         <p><strong>Order ID:</strong> ${order.orderId}</p>

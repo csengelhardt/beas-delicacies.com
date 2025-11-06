@@ -10,7 +10,7 @@ const cardElement = elements.create('card', {
   style: {
     base: {
       fontSize: '16px',
-      color: '#4A4A4A',
+      color: '#3A3A5A',
       fontFamily: '"Montserrat", sans-serif',
       '::placeholder': {
         color: '#aab7c4',
