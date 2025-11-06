@@ -22,6 +22,13 @@
    INNOVATIVE BOX-SHADOW FOCUS SYSTEM
    Replaces traditional outline with layered
    box-shadows for perfect shape adherence
+
+   IMPORTANT: Snipcart's internal cart/modal UI
+   is excluded from this system to prevent
+   visual interference with their native focus
+   management. Only site-integrated Snipcart
+   elements (Add to Cart buttons, cart links)
+   use the custom focus styles.
    ============================================ */
 
 /* Focus ring customization variables */
@@ -38,8 +45,10 @@
   outline: none;
 }
 
-/* Sophisticated multi-layer box-shadow focus indicator */
-*:focus-visible {
+/* Sophisticated multi-layer box-shadow focus indicator
+   IMPORTANT: Exclude Snipcart's internal cart/modal UI to prevent interference
+   with their native focus management and accessibility features */
+*:focus-visible:not([class*="snipcart-modal"] *):not([class*="snipcart-cart"] *):not([class*="snipcart__"] *) {
   box-shadow:
     /* Inner ring - crisp definition */
     0 0 0 var(--focus-ring-offset) var(--bg-color),
@@ -79,20 +88,22 @@
   }
 }
 
-/* Apply pulse animation to interactive elements */
-button:focus-visible,
-a:focus-visible,
-input[type="submit"]:focus-visible,
-input[type="button"]:focus-visible,
+/* Apply pulse animation to interactive elements
+   Exclude Snipcart's internal cart/modal elements from animation */
+button:focus-visible:not([class*="snipcart-modal"] *):not([class*="snipcart-cart"] *):not([class*="snipcart__"] *),
+a:focus-visible:not([class*="snipcart-modal"] *):not([class*="snipcart-cart"] *):not([class*="snipcart__"] *),
+input[type="submit"]:focus-visible:not([class*="snipcart-modal"] *):not([class*="snipcart-cart"] *):not([class*="snipcart__"] *),
+input[type="button"]:focus-visible:not([class*="snipcart-modal"] *):not([class*="snipcart-cart"] *):not([class*="snipcart__"] *),
 .btn:focus-visible,
 .snipcart-add-item:focus-visible {
   animation: focusPulse 2.5s ease-in-out infinite;
 }
 
-/* Enhanced focus for form inputs */
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
+/* Enhanced focus for form inputs
+   Exclude Snipcart's internal form elements */
+input:focus-visible:not([class*="snipcart-modal"] *):not([class*="snipcart-cart"] *):not([class*="snipcart__"] *),
+textarea:focus-visible:not([class*="snipcart-modal"] *):not([class*="snipcart-cart"] *):not([class*="snipcart__"] *),
+select:focus-visible:not([class*="snipcart-modal"] *):not([class*="snipcart-cart"] *):not([class*="snipcart__"] *) {
   --focus-ring-width: 2px;
   --focus-ring-offset: 0px;
   --focus-glow-size: 6px;
@@ -109,9 +120,10 @@ select:focus-visible {
   --existing-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
-/* Snipcart elements - subtle focus without interference */
-[class*="snipcart"]:focus-visible,
-.snipcart *:focus-visible {
+/* Snipcart site-integrated elements - subtle focus without interference
+   These rules apply only to elements like "Add to Cart" buttons and cart links
+   Internal cart/modal UI elements are excluded from custom focus system above */
+[class*="snipcart"]:focus-visible:not([class*="snipcart-modal"] *):not([class*="snipcart-cart"] *):not([class*="snipcart__"] *) {
   --focus-ring-width: 2px;
   --focus-ring-offset: 1px;
   --focus-glow-size: 4px;
