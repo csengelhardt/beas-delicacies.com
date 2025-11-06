@@ -161,7 +161,7 @@ function showNotification(message) {
     position: fixed;
     top: 100px;
     right: 20px;
-    background: linear-gradient(135deg, #CCCCFF 0%, #7777DD 100%);
+    background: linear-gradient(135deg, #EDEDFF 0%, #CCCCFF 75%, #7777DD 100%);
     color: #3A3A5A;
     padding: 15px 25px;
     border-radius: 8px;
