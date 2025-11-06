@@ -3,675 +3,195 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bea's Delicacies - Login</title>
+
+  <!-- Page Title -->
+  <title>Redirecting to Account - Bea's Delicacies</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Redirecting to account page. Please wait...">
+
+  <!-- Canonical Redirect -->
+  <link rel="canonical" href="https://beasdelicacies.com/account.html">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/cropped-cake_3087281.png">
+
+  <!-- Immediate Redirect -->
+  <meta http-equiv="refresh" content="0; url=account.html">
+
+  <!-- Stylesheet for fallback message -->
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="auth-styles.css">
 
-  <!-- Snipcart Integration -->
-  <link rel="preconnect" href="https://app.snipcart.com">
-  <link rel="preconnect" href="https://cdn.snipcart.com">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
-
-  <!-- Snipcart Theme Customization -->
   <style>
-    :root {
-      --snipcart-primary: #C9A886;
-      --snipcart-primary-hover: #B89968;
-      --snipcart-secondary: #D4B896;
-      --snipcart-text: #4A4A4A;
-      --snipcart-background: #FAF7F2;
+    /* Redirect Page Styling */
+    .redirect-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      text-align: center;
+      padding: 40px 20px;
     }
 
-    /* Z-INDEX FIX: Ensure cart appears above header (header is z-index: 1000) */
-    #snipcart,
-    #snipcart-cart-container,
-    .snipcart,
-    .snipcart-modal,
-    .snipcart__cart--side,
-    .snipcart-cart,
-    .snipcart-layout,
-    .snipcart__box,
-    .snipcart-overlay,
-    [data-snipcart-layout],
-    [class*="snipcart"] {
-      z-index: 1500 !important;
-      /* Remove CSS containment that might trap dropdowns */
-      contain: none !important;
+    .redirect-message {
+      max-width: 600px;
+      background: #F5F1EA;
+      border: 2px solid #E5DDD0;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
-    /* Z-INDEX FIX: Ensure dropdown menus appear above all other elements */
-    /* IMPORTANT: position: relative is required for z-index to work */
-    .snipcart__select-dropdown,
-    .snipcart__select-dropdown-container,
-    .snipcart__dropdown,
-    .snipcart__actions--link,
-    [class*="snipcart"][class*="dropdown"],
-    [class*="snipcart"][class*="select"] {
-      /* Force GPU layer rendering */
-      transform: translateZ(0) !important;
-      will-change: transform !important;
-      /* High z-index with proper positioning */
-      position: relative !important;
-      z-index: 9999 !important;
-      /* Remove any containment */
-      contain: none !important;
-      /* Ensure smooth rendering */
-      backface-visibility: hidden !important;
-      -webkit-backface-visibility: hidden !important;
+    .redirect-message h1 {
+      font-family: 'Playfair Display', serif;
+      color: #C9A886;
+      margin-bottom: 20px;
+      font-size: 2em;
     }
 
-    /* Specifically target the dropdown menu that appears when opened */
-    .snipcart__select-dropdown-menu,
-    .snipcart-base-select__menu,
-    [class*="snipcart"][class*="menu"],
-    [class*="Select__menu"] {
-      /* Use fixed positioning to escape parent containers */
-      position: fixed !important;
-      z-index: 99999 !important;
-      /* Force onto its own layer */
-      transform: translateZ(0) !important;
-      will-change: transform, opacity !important;
-      /* Ensure it's on top of everything */
-      isolation: isolate !important;
+    .redirect-message p {
+      color: #4A4A4A;
+      margin-bottom: 30px;
+      font-size: 1.1em;
+      line-height: 1.6;
     }
 
-    /* Cart Container Background - Match website theme */
-    .snipcart-cart-container,
-    .snipcart-modal__container,
-    .snipcart__box--badge-highlight,
-    .snipcart-cart__content,
-    .snipcart-layout__content,
-    .snipcart__box,
-    .snipcart-checkout,
-    .snipcart-checkout__content {
-      background-color: #FAF7F2 !important;
+    .redirect-link {
+      display: inline-block;
+      background: linear-gradient(135deg, #D4B896 0%, #B89968 100%);
+      color: #4A4A4A;
+      text-decoration: none;
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    /* Cart Header */
-    .snipcart-cart-header,
-    .snipcart-layout__header {
-      background: linear-gradient(135deg, #C9A886 0%, #B89968 100%) !important;
-      border-bottom: 3px solid #E5DDD0 !important;
+    .redirect-link:hover {
+      background: linear-gradient(135deg, #B89968 0%, #D4B896 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
-    .snipcart-cart-header__title,
-    .snipcart__font--heading {
-      font-family: 'Playfair Display', serif !important;
-      color: #4A4A4A !important;
+    .spinner {
+      border: 4px solid #E5DDD0;
+      border-top: 4px solid #C9A886;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
     }
 
-    /* General Text Styling */
-    .snipcart-modal__container,
-    .snipcart-layout,
-    .snipcart-form__label,
-    .snipcart__font--std {
-      font-family: 'Montserrat', sans-serif !important;
-      color: #4A4A4A !important;
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    .snipcart__font--bold,
-    .snipcart__font--subtitle,
-    .snipcart-item__title,
-    h1.snipcart__font--slim,
-    h2.snipcart__font--slim,
-    h3.snipcart__font--slim {
-      font-family: 'Playfair Display', serif !important;
-      color: #C9A886 !important;
+    .deprecation-notice {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #FFF9E6;
+      border: 2px solid #FFD700;
+      border-radius: 8px;
+      font-size: 0.9em;
+      color: #666;
     }
 
-    /* COMPREHENSIVE PRIMARY BUTTONS - Brown Gradient */
-    .snipcart-base-button--primary,
-    .snipcart__actions--link,
-    .snipcart-cart-button,
-    button.snipcart-base-button--primary,
-    .snipcart-button-primary,
-    .snipcart__button--primary,
-    .snipcart-customer-signin__submit,
-    .snipcart-form__submit,
-    .snipcart-checkout__submit,
-    button[type="submit"].snipcart-base-button,
-    .snipcart-payment-methods__submit,
-    .snipcart__actions button:not(.snipcart-base-button--secondary) {
-      background: linear-gradient(135deg, #D4B896 0%, #B89968 100%) !important;
-      color: #4A4A4A !important;
-      border-radius: 30px !important;
-      font-family: 'Montserrat', sans-serif !important;
-      font-weight: 600 !important;
-      padding: 12px 30px !important;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
-      transition: all 0.3s ease !important;
-      border: none !important;
-      text-shadow: none !important;
-    }
-
-    .snipcart-base-button--primary:hover,
-    .snipcart-cart-button:hover,
-    button.snipcart-base-button--primary:hover,
-    .snipcart-button-primary:hover,
-    .snipcart__button--primary:hover,
-    .snipcart-form__submit:hover,
-    .snipcart-checkout__submit:hover {
-      background: linear-gradient(135deg, #B89968 0%, #D4B896 100%) !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3) !important;
-      color: #4A4A4A !important;
-    }
-
-    /* Secondary Buttons */
-    .snipcart-base-button--secondary {
-      background-color: #F5F1EA !important;
-      color: #8B7355 !important;
-      border: 2px solid #E5DDD0 !important;
-      border-radius: 30px !important;
-      font-weight: 600 !important;
-      font-family: 'Montserrat', sans-serif !important;
-    }
-
-    .snipcart-base-button--secondary:hover {
-      background-color: #E5DDD0 !important;
-      border-color: #D4B896 !important;
-    }
-
-    /* Cart Items */
-    .snipcart-item-line,
-    .snipcart-cart-summary-item {
-      border-bottom: 1px solid #E5DDD0 !important;
-      background-color: #FFFFFF !important;
-      border-radius: 8px !important;
-      margin-bottom: 10px !important;
-      padding: 15px !important;
-    }
-
-    /* Totals and Summary */
-    .snipcart-cart-summary,
-    .snipcart__box--badge,
-    .snipcart-discount-box,
-    .snipcart-cart-summary-fees {
-      background-color: #F5F1EA !important;
-      border: 2px solid #E5DDD0 !important;
-      border-radius: 12px !important;
-    }
-
-    .snipcart-summary-fees__amount,
-    .snipcart__font--secondary,
-    .snipcart-cart-summary-fees__amount {
-      color: #8B7355 !important;
-      font-weight: 600 !important;
-    }
-
-    /* Shipping Notice - Add Spacing */
-    .snipcart-cart-summary-fees__item,
-    .snipcart-cart-summary-fees,
-    .snipcart__box--badge-highlight p,
-    .snipcart-cart-summary-fees__notice,
-    .snipcart-cart-summary__fees {
-      margin-bottom: 30px !important;
-      padding-bottom: 20px !important;
-    }
-
-    /* Total Price */
-    .snipcart-cart-summary-item--total {
-      background: linear-gradient(135deg, #C9A886 0%, #B89968 100%) !important;
-      border-radius: 8px !important;
-      padding: 15px !important;
-      margin-top: 30px !important;
-    }
-
-    .snipcart-cart-summary-item--total .snipcart__font--bold {
-      color: #FFFFFF !important;
-      font-size: 1.4em !important;
-    }
-
-    /* Links */
-    .snipcart__actions--link,
-    a.snipcart-modal__close {
-      color: #B89968 !important;
-    }
-
-    .snipcart__actions--link:hover,
-    a.snipcart-modal__close:hover {
-      color: #8B7355 !important;
-    }
-
-    /* Empty Cart Message */
-    .snipcart-empty-cart {
-      font-family: 'Playfair Display', serif !important;
-      color: #C9A886 !important;
-    }
-
-    /* Quantity Controls */
-    .snipcart-item-quantity__quantity {
-      background-color: #F5F1EA !important;
-      border: 2px solid #E5DDD0 !important;
-      border-radius: 20px !important;
-      color: #4A4A4A !important;
-      font-weight: 600 !important;
-    }
-
-    .snipcart__actions--link.snipcart-item-quantity__remove,
-    .snipcart__actions--link.snipcart-item-quantity__add {
-      background-color: #D4B896 !important;
-      color: #FFFFFF !important;
-      border-radius: 50% !important;
-      width: 32px !important;
-      height: 32px !important;
-      min-width: 32px !important;
-      min-height: 32px !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      padding: 0 !important;
-    }
-
-    /* Fix Blue Highlights - Replace with Theme Colors */
-    /* Plus/Minus Quantity Buttons */
-    .snipcart-item-quantity__total-items button,
-    .snipcart__actions--link svg,
-    .snipcart-item-quantity__remove svg,
-    .snipcart-item-quantity__add svg {
-      color: #C9A886 !important;
-      fill: #C9A886 !important;
-    }
-
-    .snipcart__actions--link:hover svg {
-      color: #B89968 !important;
-      fill: #B89968 !important;
-    }
-
-    /* Navigation Icons (Back Arrow, Close, etc.) */
-    .snipcart__icon,
-    .snipcart-modal__close-icon,
-    .snipcart-cart-button__icon,
-    svg.snipcart__icon,
-    button svg,
-    .snipcart-modal__close svg {
-      color: #C9A886 !important;
-      fill: #C9A886 !important;
-    }
-
-    .snipcart__icon:hover,
-    .snipcart-modal__close-icon:hover,
-    .snipcart-cart-button__icon:hover {
-      color: #B89968 !important;
-      fill: #B89968 !important;
-    }
-
-    /* Bag/Cart Icon */
-    .snipcart-cart-button svg,
-    .snipcart-cart-header__icon svg,
-    [class*="snipcart"][class*="icon"] svg {
-      color: #C9A886 !important;
-      fill: #C9A886 !important;
-    }
-
-    /* Focus States - Replace Blue with Theme Color */
-    .snipcart-input:focus,
-    .snipcart-textbox:focus,
-    button:focus,
-    a:focus {
-      outline: none !important;
-      box-shadow: 0 0 0 3px rgba(201, 168, 134, 0.4) !important;
-    }
-
-    /* Circular focus for quantity buttons */
-    .snipcart__actions--link.snipcart-item-quantity__remove:focus,
-    .snipcart__actions--link.snipcart-item-quantity__add:focus {
-      outline: none !important;
-      box-shadow: 0 0 0 3px rgba(201, 168, 134, 0.5) !important;
-    }
-
-    /* Remove item button (trash icon) - ensure circular styling */
-    .snipcart-item-line__remove,
-    button.snipcart__button--icon,
-    .snipcart__actions--link[aria-label*="Remove"],
-    .snipcart__actions--link[aria-label*="Delete"] {
-      width: 32px !important;
-      height: 32px !important;
-      min-width: 32px !important;
-      min-height: 32px !important;
-      border-radius: 50% !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      padding: 0 !important;
-    }
-
-    /* Focus state for remove/delete buttons */
-    .snipcart-item-line__remove:focus,
-    button.snipcart__button--icon:focus,
-    .snipcart__actions--link[aria-label*="Remove"]:focus,
-    .snipcart__actions--link[aria-label*="Delete"]:focus {
-      outline: none !important;
-      box-shadow: 0 0 0 3px rgba(201, 168, 134, 0.5) !important;
-    }
-
-    /* Active/Selected States */
-    .snipcart__button--active,
-    .snipcart-item-quantity__remove:active,
-    .snipcart-item-quantity__add:active {
-      background-color: #B89968 !important;
-      box-shadow: none !important;
-    }
-
-    /* Checkout Steps Navigation */
-    .snipcart-checkout-step,
-    .snipcart-checkout-step--current {
-      font-family: 'Montserrat', sans-serif !important;
-    }
-
-    .snipcart-checkout-step--current {
-      color: #C9A886 !important;
-      border-bottom-color: #C9A886 !important;
-    }
-
-    /* Payment Method Selection */
-    .snipcart-payment-methods-list__item--selected {
-      border-color: #C9A886 !important;
-      background-color: #F5F1EA !important;
-    }
-
-    /* Alerts and Messages */
-    .snipcart__alert {
-      font-family: 'Montserrat', sans-serif !important;
-    }
-
-    .snipcart__alert--info {
-      background-color: #F5F1EA !important;
-      border-color: #E5DDD0 !important;
-      color: #4A4A4A !important;
+    .deprecation-notice strong {
+      color: #C9A886;
     }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">
-    Free shipping on orders over $50!
+  <!-- Redirect Container -->
+  <div class="redirect-container">
+    <div class="redirect-message">
+      <div class="spinner"></div>
+      <h1>Redirecting...</h1>
+      <p>
+        We've upgraded our account system! You're being automatically redirected to our new account page.
+      </p>
+      <p>
+        If you're not redirected automatically, please click the button below:
+      </p>
+      <a href="account.html" class="redirect-link">Go to My Account</a>
+    </div>
+
+    <!-- Deprecation Notice (for developers/admins) -->
+    <div class="deprecation-notice">
+      <strong>⚠️ Developer Notice:</strong> This page (login.html) has been deprecated and replaced with account.html.
+      The new system uses Snipcart's built-in customer portal for authentication.
+      Please update any bookmarks or links to use <code>account.html</code> instead.
+    </div>
   </div>
 
-  <header class="main-header">
-    <a href="index.html" class="logo">Bea's Delicacies</a>
-    <button class="hamburger" aria-label="Toggle navigation menu">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#" class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</a></li>
-        <li><a href="login.html" class="active">Login</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Navigation overlay for mobile -->
-  <div class="nav-overlay"></div>
-
-  <main class="container">
-    <div class="auth-container">
-      <div class="auth-tabs">
-        <button class="auth-tab active" onclick="switchTab('login')">Login</button>
-        <button class="auth-tab" onclick="switchTab('signup')">Sign Up</button>
-      </div>
-
-      <!-- Login Form -->
-      <div id="login-form" class="auth-form active">
-        <h2>Welcome Back!</h2>
-        
-        <div class="social-login">
-          <a href="#" class="social-btn" onclick="alert('Google login would be integrated here'); return false;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-            Continue with Google
-          </a>
-          <a href="#" class="social-btn" onclick="alert('Facebook login would be integrated here'); return false;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            Continue with Facebook
-          </a>
-        </div>
-
-        <div class="divider">or</div>
-
-        <form onsubmit="handleLogin(event)">
-          <div class="form-group">
-            <label for="login-email">Email</label>
-            <input type="email" id="login-email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password" name="password" required>
-          </div>
-          <div class="forgot-password">
-            <a href="#" onclick="alert('Password reset would be implemented here'); return false;">Forgot Password?</a>
-          </div>
-          <button type="submit" class="btn" style="width: 100%;">Login</button>
-        </form>
-      </div>
-
-      <!-- Signup Form -->
-      <div id="signup-form" class="auth-form">
-        <h2>Create Account</h2>
-        
-        <div class="social-login">
-          <a href="#" class="social-btn" onclick="alert('Google signup would be integrated here'); return false;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-            </svg>
-            Sign up with Google
-          </a>
-          <a href="#" class="social-btn" onclick="alert('Facebook signup would be integrated here'); return false;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            Sign up with Facebook
-          </a>
-        </div>
-
-        <div class="divider">or</div>
-
-        <form onsubmit="handleSignup(event)">
-          <div class="form-group">
-            <label for="signup-name">Full Name</label>
-            <input type="text" id="signup-name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="signup-email">Email</label>
-            <input type="email" id="signup-email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="signup-password">Password</label>
-            <input type="password" id="signup-password" name="password" required minlength="8">
-          </div>
-          <div class="form-group">
-            <label for="signup-confirm">Confirm Password</label>
-            <input type="password" id="signup-confirm" name="confirm" required>
-          </div>
-          <button type="submit" class="btn" style="width: 100%;">Create Account</button>
-        </form>
-      </div>
-    </div>
-  </main>
-
-    <!-- ENHANCED FOOTER -->
-  <footer class="main-footer">
-    <div class="footer-content">
-      
-      <!-- Column 1: Brand & Mission -->
-      <div class="footer-section footer-brand">
-        <a href="index.html" class="footer-logo">Bea's Delicacies</a>
-        <p>Handcrafted with love since 2020. Bringing joy to every celebration with our freshly baked treats.</p>
-        <p class="footer-tagline">"Baking dreams, one bite at a time"</p>
-      </div>
-      
-      <!-- Column 2: Quick Links -->
-      <div class="footer-section footer-quick-links">
-        <h3>Quick Links</h3>
-        <div class="quick-links-columns">
-          <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html">Shop All Products</a></li>
-            <li><a href="about.html">Our Story</a></li>
-          </ul>
-          <ul class="footer-links">
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="cart.html">Shopping Cart</a></li>
-            <li><a href="login.html">My Account</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Column 3: Stay Connected -->
-      <div class="footer-section">
-        <h3>Stay Connected</h3>
-
-        <div class="footer-contact-item">
-          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-          <a href="mailto:hello@beasdelicacies.com">hello@beasdelicacies.com</a>
-        </div>
-
-        <div class="social-links" style="margin-top: 20px;">
-          <a href="https://www.instagram.com/beasdelicacies" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.80 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.40s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </a>
-
-          <a href="https://www.facebook.com/beasdelicacies" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </a>
-
-          <a href="https://www.tiktok.com/@beasdelicacies" class="social-link" aria-label="TikTok" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-            </svg>
-          </a>
-
-          <a href="https://www.pinterest.com/beasdelicacies" class="social-link" aria-label="Pinterest" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
-            </svg>
-          </a>
-        </div>
-        
-        <div style="margin-top: 20px;">
-          <p style="font-size: 0.85em; margin-bottom: 8px; opacity: 0.8;">We Accept:</p>
-          <div class="payment-methods">
-            <span class="payment-icon">💳 Visa</span>
-            <span class="payment-icon">💳 MC</span>
-            <span class="payment-icon">💳 Amex</span>
-            <span class="payment-icon">🅿️ PayPal</span>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-    
-    <!-- Footer Bottom Bar -->
-    <div class="footer-bottom">
-      <div class="footer-bottom-content">
-        <p class="footer-copyright">
-          &copy; 2025 Bea's Delicacies. All rights reserved. Made with 💝 by a 13-year-old baker.
-        </p>
-        
-        <ul class="footer-legal-links">
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms of Service</a></li>
-          <li><a href="cookies.html">Cookie Policy</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Snipcart Required Elements -->
-  <div id="snipcart" data-api-key="YTU1ZTc4NjYtODk0MS00ZTEzLTk4MTMtMjg3NDBiMDBhMjBhNjM4OTc5MDMxMjc4NDQyNzYz" data-config-modal-style="side" hidden></div>
-
-  <!-- Snipcart JavaScript -->
-  <script src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
-
-  <!-- Mobile Menu JavaScript -->
-  <script src="menu.js"></script>
-
-  <!-- Auth JavaScript -->
-  <script src="auth.js"></script>
-
-
-  <!-- Country Dropdown Fix: GPU Layer & Portal Pattern -->
+  <!-- JavaScript Redirect (backup to meta refresh) -->
   <script>
-    // Wait for Snipcart to fully load
-    document.addEventListener('snipcart.ready', function() {
-      // Use MutationObserver to detect when dropdowns are added to the DOM
-      const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-          mutation.addedNodes.forEach(function(node) {
-            if (node.nodeType === 1) { // Element node
-              // Check if this is a dropdown menu or contains one
-              const dropdowns = node.querySelectorAll ?
-                node.querySelectorAll('[class*="select"][class*="menu"], [class*="dropdown-menu"], .snipcart__select-dropdown-menu') :
-                [];
+    /**
+     * Login Page Redirect Script
+     *
+     * This script ensures users are redirected to the new account.html page.
+     * Multiple redirect methods are used for maximum compatibility:
+     * 1. Meta refresh tag (0 seconds)
+     * 2. JavaScript redirect (immediate)
+     * 3. Manual link as fallback
+     *
+     * @deprecated This page (login.html) is deprecated. Use account.html instead.
+     * @version 1.0.0
+     * @since 2025-11-05
+     */
 
-              // Also check if the node itself is a dropdown
-              const isDropdown = node.className && (
-                node.className.includes('menu') ||
-                node.className.includes('dropdown')
-              );
-
-              if (isDropdown || dropdowns.length > 0) {
-                // Apply aggressive z-index and rendering fixes
-                const targets = isDropdown ? [node] : Array.from(dropdowns);
-                targets.forEach(function(dropdown) {
-                  dropdown.style.position = 'fixed';
-                  dropdown.style.zIndex = '999999';
-                  dropdown.style.transform = 'translateZ(0)';
-                  dropdown.style.willChange = 'transform, opacity';
-                  dropdown.style.isolation = 'isolate';
-                });
-              }
-            }
-          });
-        });
-      });
-
-      // Observe the Snipcart container for any DOM changes
-      const snipcartContainer = document.getElementById('snipcart');
-      if (snipcartContainer) {
-        observer.observe(snipcartContainer, {
-          childList: true,
-          subtree: true
-        });
+    // Immediate redirect
+    (function() {
+      // Log deprecation warning for developers
+      if (console && console.warn) {
+        console.warn(
+          '%c⚠️ DEPRECATED: login.html',
+          'color: orange; font-weight: bold; font-size: 14px;',
+          '\nThis page has been deprecated and replaced with account.html.',
+          '\nPlease update your bookmarks and links.',
+          '\nNew URL: ' + window.location.origin + '/account.html'
+        );
       }
-    });
 
-    // Also try to fix dropdowns on click events (fallback)
-    document.addEventListener('click', function(e) {
-      // Small delay to let the dropdown render
+      // Perform redirect after brief delay (allows users to see the message)
       setTimeout(function() {
-        const menus = document.querySelectorAll('[class*="select"][class*="menu"], [class*="dropdown-menu"], .snipcart__select-dropdown-menu');
-        menus.forEach(function(menu) {
-          if (menu.offsetParent !== null) { // Is visible
-            menu.style.position = 'fixed';
-            menu.style.zIndex = '999999';
-            menu.style.transform = 'translateZ(0)';
-          }
-        });
-      }, 10);
-    }, true);
+        window.location.href = 'account.html';
+      }, 1000); // 1 second delay
+
+      // Alternative: Immediate redirect (uncomment if preferred)
+      // window.location.replace('account.html');
+    })();
+
+    // Track deprecation in analytics (if Google Analytics is present)
+    if (typeof gtag === 'function') {
+      gtag('event', 'deprecated_page_access', {
+        'event_category': 'Deprecation',
+        'event_label': 'login.html accessed',
+        'value': 1
+      });
+    }
+
+    // Check if redirect was successful after 3 seconds
+    setTimeout(function() {
+      // If still on this page after 3 seconds, something went wrong
+      if (window.location.pathname.includes('login.html')) {
+        console.error('Automatic redirect failed. Please click the link manually.');
+
+        // Update message
+        var message = document.querySelector('.redirect-message p');
+        if (message) {
+          message.innerHTML = '<strong style="color: #B89968;">Automatic redirect failed.</strong><br>Please click the button below to continue:';
+        }
+      }
+    }, 3000);
   </script>
 
 </body>

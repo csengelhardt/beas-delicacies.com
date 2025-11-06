@@ -3,8 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bea's Delicacies - Shopping Cart</title>
+
+  <!-- SEO Meta Tags -->
+  <title>My Account - Order History & Saved Addresses | Bea's Delicacies</title>
+  <meta name="description" content="Access your Bea's Delicacies account to view order history, track deliveries, manage saved addresses, and update your profile information.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://beasdelicacies.com/account.html">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/cropped-cake_3087281.png">
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css">
 
   <!-- Snipcart Integration -->
@@ -12,8 +23,16 @@
   <link rel="preconnect" href="https://cdn.snipcart.com">
   <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 
-  <!-- Z-Index Fix for Flyout Cart -->
+  <!-- Snipcart Theme Customization -->
   <style>
+    :root {
+      --snipcart-primary: #C9A886;
+      --snipcart-primary-hover: #B89968;
+      --snipcart-secondary: #D4B896;
+      --snipcart-text: #4A4A4A;
+      --snipcart-background: #FAF7F2;
+    }
+
     /* Z-INDEX FIX: Ensure cart appears above header (header is z-index: 1000) */
     #snipcart,
     #snipcart-cart-container,
@@ -27,256 +46,223 @@
     [data-snipcart-layout],
     [class*="snipcart"] {
       z-index: 1500 !important;
-      /* Remove CSS containment that might trap dropdowns */
       contain: none !important;
     }
 
-    /* Z-INDEX FIX: Ensure dropdown menus appear above all other elements */
-    /* IMPORTANT: position: relative is required for z-index to work */
+    /* DROPDOWN FIX: Force dropdown into its own rendering layer */
     .snipcart__select-dropdown,
     .snipcart__select-dropdown-container,
     .snipcart__dropdown,
     .snipcart__actions--link,
     [class*="snipcart"][class*="dropdown"],
     [class*="snipcart"][class*="select"] {
-      /* Force GPU layer rendering */
       transform: translateZ(0) !important;
       will-change: transform !important;
-      /* High z-index with proper positioning */
       position: relative !important;
       z-index: 9999 !important;
-      /* Remove any containment */
       contain: none !important;
-      /* Ensure smooth rendering */
       backface-visibility: hidden !important;
       -webkit-backface-visibility: hidden !important;
     }
 
-    /* Specifically target the dropdown menu that appears when opened */
     .snipcart__select-dropdown-menu,
     .snipcart-base-select__menu,
     [class*="snipcart"][class*="menu"],
     [class*="Select__menu"] {
-      /* Use fixed positioning to escape parent containers */
       position: fixed !important;
       z-index: 99999 !important;
-      /* Force onto its own layer */
       transform: translateZ(0) !important;
       will-change: transform, opacity !important;
-      /* Ensure it's on top of everything */
       isolation: isolate !important;
     }
-  </style>
 
-  <!-- Auto-open Snipcart cart -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Wait for Snipcart to be ready, then open the cart
-      document.addEventListener('snipcart.ready', function() {
-        Snipcart.api.theme.cart.open();
-      });
-    });
-  </script>
-  <style>
-    .cart-container {
-      max-width: 1000px;
-      margin: 40px auto;
+    /* Cart Container Background - Match website theme */
+    .snipcart-cart-container,
+    .snipcart-modal__container,
+    .snipcart__box--badge-highlight,
+    .snipcart-cart__content,
+    .snipcart-layout__content,
+    .snipcart__box,
+    .snipcart-checkout,
+    .snipcart-checkout__content {
+      background-color: #FAF7F2 !important;
     }
 
-    .cart-empty {
+    /* Account Page Specific Styles */
+    .account-hero {
+      background: linear-gradient(135deg, #C9A886 0%, #B89968 100%);
+      padding: 60px 20px;
       text-align: center;
-      padding: 80px 20px;
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      color: #4A4A4A;
+      margin-bottom: 40px;
     }
 
-    .cart-empty h2 {
-      margin-bottom: 20px;
-    }
-
-    .cart-items {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 25px;
-      padding: 25px 0;
-      border-bottom: 2px solid var(--border-color);
-      align-items: center;
-    }
-
-    .cart-item:last-child {
-      border-bottom: none;
-    }
-
-    .cart-item-image {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 2px solid var(--border-color);
-    }
-
-    .cart-item-details {
-      flex: 1;
-    }
-
-    .cart-item-name {
-      font-size: 1.3em;
-      color: var(--primary-color);
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-
-    .cart-item-price {
-      font-size: 1.1em;
-      color: var(--text-color);
+    .account-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
       margin-bottom: 15px;
+      color: #FFFFFF;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .quantity-btn {
-      width: 35px;
-      height: 35px;
-      border: 2px solid var(--secondary-color);
-      background: white;
-      color: var(--primary-color);
-      font-size: 1.2em;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
-
-    .quantity-btn:hover {
-      background: var(--secondary-color);
-      color: var(--dark-accent);
-    }
-
-    .quantity-display {
+    .account-hero p {
       font-size: 1.1em;
-      font-weight: 600;
-      min-width: 30px;
+      color: #FAF7F2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .account-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .account-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .feature-card {
+      background: #FFFFFF;
+      border: 2px solid #E5DDD0;
+      border-radius: 12px;
+      padding: 30px;
       text-align: center;
-    }
-
-    .remove-btn {
-      background: none;
-      border: none;
-      color: #d9534f;
-      font-size: 1.1em;
-      cursor: pointer;
-      padding: 8px 15px;
       transition: all 0.3s ease;
-      font-weight: 500;
     }
 
-    .remove-btn:hover {
-      color: #c9302c;
-      text-decoration: underline;
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      border-color: #C9A886;
     }
 
-    .cart-item-total {
+    .feature-icon {
+      font-size: 3em;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: #C9A886;
+      margin-bottom: 10px;
       font-size: 1.3em;
-      color: var(--primary-color);
-      font-weight: 700;
-      min-width: 100px;
-      text-align: right;
-      font-family: 'Playfair Display', serif;
     }
 
-    .cart-summary {
-      background: white;
-      border-radius: 15px;
-      padding: 35px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      border: 2px solid var(--border-color);
+    .feature-card p {
+      color: #4A4A4A;
+      line-height: 1.6;
+      font-size: 0.95em;
     }
 
-    .cart-summary h2 {
-      margin-bottom: 25px;
+    .cta-section {
+      background: #F5F1EA;
+      border-radius: 12px;
+      padding: 40px;
       text-align: center;
+      margin: 40px 0;
+      border: 2px solid #E5DDD0;
     }
 
-    .summary-row {
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: #C9A886;
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+
+    .account-actions {
       display: flex;
-      justify-content: space-between;
-      padding: 12px 0;
-      font-size: 1.1em;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
     }
 
-    .summary-row.total {
-      border-top: 3px solid var(--border-color);
-      margin-top: 15px;
-      padding-top: 20px;
-      font-size: 1.4em;
-      font-weight: 700;
-      color: var(--primary-color);
-      font-family: 'Playfair Display', serif;
-    }
-
-    .checkout-btn {
-      width: 100%;
-      margin-top: 25px;
-      padding: 18px;
-      font-size: 1.15em;
-      text-align: center;
-    }
-
-    .continue-shopping {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .continue-shopping a {
-      color: var(--primary-color);
+    .btn-primary {
+      background: linear-gradient(135deg, #D4B896 0%, #B89968 100%);
+      color: #4A4A4A;
+      border: none;
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.05em;
+      cursor: pointer;
+      transition: all 0.3s ease;
       text-decoration: none;
-      font-weight: 500;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    .continue-shopping a:hover {
-      text-decoration: underline;
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #B89968 0%, #D4B896 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
+    .btn-secondary {
+      background: #FFFFFF;
+      color: #8B7355;
+      border: 2px solid #E5DDD0;
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.05em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      background: #E5DDD0;
+      border-color: #D4B896;
+    }
+
+    .loading-message {
+      text-align: center;
+      padding: 60px 20px;
+      color: #8B7355;
+      font-style: italic;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .cart-item {
+      .account-hero h1 {
+        font-size: 2em;
+      }
+
+      .account-features {
+        grid-template-columns: 1fr;
+      }
+
+      .account-actions {
         flex-direction: column;
-        text-align: center;
+        align-items: center;
       }
 
-      .cart-item-image {
+      .btn-primary,
+      .btn-secondary {
         width: 100%;
-        max-width: 250px;
-        height: 200px;
-      }
-
-      .cart-item-total {
-        text-align: center;
-      }
-
-      .quantity-controls {
-        justify-content: center;
+        max-width: 300px;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Top Bar -->
   <div class="top-bar">
     Free shipping on orders over $50!
   </div>
 
+  <!-- Header -->
   <header class="main-header">
     <a href="index.html" class="logo">Bea's Delicacies</a>
     <button class="hamburger" aria-label="Toggle navigation menu">
@@ -290,8 +276,8 @@
         <li><a href="shop.html">Shop</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="#" class="snipcart-checkout active">Cart (<span class="snipcart-items-count">0</span>)</a></li>
-        <li><a href="account.html" class="snipcart-customer-signin">My Account</a></li>
+        <li><a href="#" class="snipcart-checkout">Cart (<span class="snipcart-items-count">0</span>)</a></li>
+        <li><a href="account.html" class="active snipcart-customer-signin">My Account</a></li>
       </ul>
     </nav>
   </header>
@@ -299,29 +285,71 @@
   <!-- Navigation overlay for mobile -->
   <div class="nav-overlay"></div>
 
-  <main class="container">
-    <h1 style="text-align: center; margin-bottom: 40px;">Shopping Cart</h1>
+  <!-- Account Hero Section -->
+  <section class="account-hero">
+    <h1>My Account</h1>
+    <p>Access your order history, track deliveries, and manage your account settings</p>
+  </section>
 
-    <div class="cart-container">
-      <div class="cart-empty">
-        <h2>Opening your cart...</h2>
-        <p style="margin-bottom: 25px;">Your shopping cart will open in a moment. If it doesn't open automatically, click the Cart link above.</p>
-        <a href="shop.html" class="btn">Continue Shopping</a>
+  <!-- Main Content -->
+  <main class="account-content">
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+      <h2>Access Your Account</h2>
+      <p>Sign in or create an account to view your orders, save addresses, and enjoy a faster checkout experience.</p>
+
+      <div class="account-actions">
+        <button class="btn-primary snipcart-customer-signin" aria-label="Sign in to your account">
+          Sign In / Create Account
+        </button>
+        <a href="shop.html" class="btn-secondary">Continue Shopping</a>
       </div>
-    </div>
+    </section>
+
+    <!-- Account Features -->
+    <section class="account-features">
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">📦</span>
+        <h3>Order History</h3>
+        <p>View all your past orders, track current deliveries, and reorder your favorite treats with ease.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">📍</span>
+        <h3>Saved Addresses</h3>
+        <p>Store multiple delivery addresses for faster checkout and easy gifting to friends and family.</p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">⚡</span>
+        <h3>Quick Checkout</h3>
+        <p>Save your information for a seamless checkout experience on all future orders.</p>
+      </div>
+    </section>
+
+    <!-- Guest Checkout Notice -->
+    <section class="cta-section" style="background: #FFFFFF; margin-top: 60px;">
+      <h2>Prefer Guest Checkout?</h2>
+      <p>No problem! You can always checkout as a guest without creating an account. Simply add items to your cart and proceed to checkout.</p>
+      <div style="margin-top: 20px;">
+        <a href="shop.html" class="btn-primary">Start Shopping</a>
+      </div>
+    </section>
+
   </main>
 
-    <!-- ENHANCED FOOTER -->
+  <!-- ENHANCED FOOTER -->
   <footer class="main-footer">
     <div class="footer-content">
-      
+
       <!-- Column 1: Brand & Mission -->
       <div class="footer-section footer-brand">
         <a href="index.html" class="footer-logo">Bea's Delicacies</a>
         <p>Handcrafted with love since 2020. Bringing joy to every celebration with our freshly baked treats.</p>
         <p class="footer-tagline">"Baking dreams, one bite at a time"</p>
       </div>
-      
+
       <!-- Column 2: Quick Links -->
       <div class="footer-section footer-quick-links">
         <h3>Quick Links</h3>
@@ -375,7 +403,7 @@
             </svg>
           </a>
         </div>
-        
+
         <div style="margin-top: 20px;">
           <p style="font-size: 0.85em; margin-bottom: 8px; opacity: 0.8;">We Accept:</p>
           <div class="payment-methods">
@@ -386,16 +414,16 @@
           </div>
         </div>
       </div>
-      
+
     </div>
-    
+
     <!-- Footer Bottom Bar -->
     <div class="footer-bottom">
       <div class="footer-bottom-content">
         <p class="footer-copyright">
           &copy; 2025 Bea's Delicacies. All rights reserved. Made with 💝 by a 13-year-old baker.
         </p>
-        
+
         <ul class="footer-legal-links">
           <li><a href="privacy.html">Privacy Policy</a></li>
           <li><a href="terms.html">Terms of Service</a></li>
@@ -414,29 +442,94 @@
   <!-- Mobile Menu JavaScript -->
   <script src="menu.js"></script>
 
-
-  <!-- Country Dropdown Fix: GPU Layer & Portal Pattern -->
+  <!-- Account Page JavaScript -->
   <script>
-    // Wait for Snipcart to fully load
+    /**
+     * Account Page Functionality
+     *
+     * This script automatically opens the Snipcart customer portal when the page loads.
+     * It provides seamless integration with Snipcart's built-in authentication system.
+     *
+     * Features:
+     * - Auto-opens customer signin/signup modal
+     * - Handles existing customer sessions
+     * - Redirects to shop if user closes modal without signing in
+     *
+     * @author Bea's Delicacies Development Team
+     * @version 1.0.0
+     */
+
+    // Wait for Snipcart to fully initialize
     document.addEventListener('snipcart.ready', function() {
-      // Use MutationObserver to detect when dropdowns are added to the DOM
+
+      // Check if user is already signed in
+      const customer = Snipcart.store.getState().customer;
+
+      if (customer && customer.status === 'SignedIn') {
+        // User is already signed in, show a welcome message
+        console.log('Customer already signed in:', customer);
+
+        // Optional: Show personalized welcome message
+        const cta = document.querySelector('.cta-section h2');
+        if (cta) {
+          cta.textContent = `Welcome back, ${customer.email}!`;
+        }
+      } else {
+        // User not signed in, open the signin modal after a brief delay
+        // Delay ensures smooth page load experience
+        setTimeout(function() {
+          Snipcart.api.theme.customer.open();
+        }, 500);
+      }
+    });
+
+    // Handle modal close event
+    document.addEventListener('snipcart.customer.closed', function() {
+      // Check if user signed in
+      const customer = Snipcart.store.getState().customer;
+
+      if (!customer || customer.status !== 'SignedIn') {
+        // User closed modal without signing in
+        console.log('User closed signin modal without authenticating');
+
+        // Optional: Show a message or redirect
+        // Uncomment the line below to redirect to shop
+        // window.location.href = 'shop.html';
+      }
+    });
+
+    // Listen for customer signin event
+    document.addEventListener('snipcart.customer.signedin', function(event) {
+      console.log('Customer signed in successfully:', event);
+
+      // Update UI to show signed-in state
+      const cta = document.querySelector('.cta-section h2');
+      if (cta) {
+        cta.textContent = 'Account Access Successful!';
+      }
+
+      const ctaDesc = document.querySelector('.cta-section p');
+      if (ctaDesc) {
+        ctaDesc.textContent = 'You can now view your orders, manage addresses, and enjoy faster checkout.';
+      }
+    });
+
+    // Country Dropdown Fix: GPU Layer & Portal Pattern
+    document.addEventListener('snipcart.ready', function() {
       const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
           mutation.addedNodes.forEach(function(node) {
-            if (node.nodeType === 1) { // Element node
-              // Check if this is a dropdown menu or contains one
+            if (node.nodeType === 1) {
               const dropdowns = node.querySelectorAll ?
                 node.querySelectorAll('[class*="select"][class*="menu"], [class*="dropdown-menu"], .snipcart__select-dropdown-menu') :
                 [];
 
-              // Also check if the node itself is a dropdown
               const isDropdown = node.className && (
                 node.className.includes('menu') ||
                 node.className.includes('dropdown')
               );
 
               if (isDropdown || dropdowns.length > 0) {
-                // Apply aggressive z-index and rendering fixes
                 const targets = isDropdown ? [node] : Array.from(dropdowns);
                 targets.forEach(function(dropdown) {
                   dropdown.style.position = 'fixed';
@@ -451,7 +544,6 @@
         });
       });
 
-      // Observe the Snipcart container for any DOM changes
       const snipcartContainer = document.getElementById('snipcart');
       if (snipcartContainer) {
         observer.observe(snipcartContainer, {
@@ -460,21 +552,6 @@
         });
       }
     });
-
-    // Also try to fix dropdowns on click events (fallback)
-    document.addEventListener('click', function(e) {
-      // Small delay to let the dropdown render
-      setTimeout(function() {
-        const menus = document.querySelectorAll('[class*="select"][class*="menu"], [class*="dropdown-menu"], .snipcart__select-dropdown-menu');
-        menus.forEach(function(menu) {
-          if (menu.offsetParent !== null) { // Is visible
-            menu.style.position = 'fixed';
-            menu.style.zIndex = '999999';
-            menu.style.transform = 'translateZ(0)';
-          }
-        });
-      }, 10);
-    }, true);
   </script>
 
 </body>
