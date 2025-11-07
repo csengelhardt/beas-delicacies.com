@@ -464,6 +464,7 @@ textarea {
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
   position: relative;
+  z-index: 1;
 }
 
 .product-card::before {
@@ -1251,6 +1252,16 @@ textarea {
   /* Show overlay when menu is active */
   .nav-overlay {
     display: block;
+  }
+
+  /* Ensure product cards and buttons stay below mobile navigation */
+  .product-card {
+    z-index: 1 !important;
+  }
+
+  .product-card .btn,
+  .product-card .snipcart-add-item {
+    z-index: 1 !important;
   }
 }
 
