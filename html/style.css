@@ -176,8 +176,11 @@ body {
   z-index: 9999 !important;
 }
 
-/* Exception: Sign-in buttons should not have elevated z-index */
-.snipcart-customer-signin {
+/* Exception: Snipcart action buttons should not have elevated z-index that blocks navigation */
+.snipcart-customer-signin,
+.snipcart-add-item,
+.snipcart-checkout {
+  position: relative !important;
   z-index: 1 !important;
 }
 
