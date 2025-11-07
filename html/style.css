@@ -664,6 +664,8 @@ textarea {
   border: 2px solid var(--border-color);
   text-align: center;
   margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
 }
 
 .cta-section h2 {
@@ -712,6 +714,7 @@ textarea {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
 
 .feature-card::before {
@@ -1261,6 +1264,19 @@ textarea {
 
   .product-card .btn,
   .product-card .snipcart-add-item {
+    z-index: 1 !important;
+  }
+
+  /* Ensure account page elements stay below mobile navigation */
+  .cta-section,
+  .account-features,
+  .feature-card {
+    z-index: 1 !important;
+  }
+
+  .account-actions,
+  .account-actions .btn,
+  .account-actions .snipcart-customer-signin {
     z-index: 1 !important;
   }
 }
